@@ -7,7 +7,7 @@
 
 `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_ это
 библиотека Python для извлечения данных из файлов HTML и XML. Она работает
-с вашим любимым парсером для обеспечения идиоматических способов навигации,
+с вашим любимым парсером, чтобы дать вам естественные способы навигации,
 поиска и изменения дерева разбора. Она обычно экономит программистам
 часы и дни работы.
 
@@ -315,7 +315,7 @@ html5lib - встроенный в Python анализатор HTML просто
  <html><head></head><body>Sacré bleu!</body></html>
 
 Затем Beautiful Soup анализирует документ, используя лучший из доступных
-парсеров. Библиотекабудет использовать HTML-парсер, если вы явно не укажете,
+парсеров. Библиотека будет использовать HTML-парсер, если вы явно не укажете,
 что нужно использовать XML-парсер. (См. `Разбор XML`_.)
 
 Виды объектов
@@ -323,7 +323,7 @@ html5lib - встроенный в Python анализатор HTML просто
 
 Beautiful Soup превращает сложный HTML-документ в сложное дерево
 объектов Python. Но вам придется иметь дело только с четырьмя
-`видами` объектов: ``Tag``, ``NavigableString``, ``BeautifulSoup``,
+`видами` объектов: ``Tag``, ``NavigableString``, ``BeautifulSoup``
 и ``Comment``.
 
 .. _Tag:
@@ -338,9 +338,9 @@ Beautiful Soup превращает сложный HTML-документ в сл
  type(tag)
  # <class 'bs4.element.Tag'>
 
-У объекта Tag (далее также «Тег») много атрибутов и методов, и я расскажу о большинстве из них
-в разделах `Навигация по дереву`_ и ´Поиск по дереву´_. На данный момент наиболее
-важными особенностями Тега являются его имя (name) и атрибуты (attributes).
+У объекта Tag (далее «тег») много атрибутов и методов, и я расскажу о большинстве из них
+в разделах `Навигация по дереву`_ и `Поиск по дереву`_. На данный момент наиболее
+важными особенностями тега являются его имя (name) и атрибуты (attributes).
 
 Имя
 ^^^^
@@ -363,7 +363,7 @@ Beautiful Soup превращает сложный HTML-документ в сл
 У тега может быть любое количество атрибутов. Тег ``<b
 id = "boldest">`` имеет атрибут "id", значение которого равно
 "boldest". Вы можете получить доступ к атрибутам тега, обращаясь с тегом как
-со словарём::
+со словарем::
 
  tag['id']
  # u'boldest'
@@ -373,7 +373,7 @@ id = "boldest">`` имеет атрибут "id", значение которо�
  tag.attrs
  # {u'id': 'boldest'}
 
-Вы можете добавлять, удалять и изменять атрибуты тега. Опять же,это
+Вы можете добавлять, удалять и изменять атрибуты тега. Опять же, это
 делается путём обращения с тегом как со словарем::
 
  tag['id'] = 'verybold'
@@ -475,7 +475,7 @@ id = "boldest">`` имеет атрибут "id", значение которо�
 
 ``NavigableString`` похожа на строку Unicode в Python, не считая того,
 что она также поддерживает некоторые функции, описанные в
-разделах `Навигация по дереву`_ и ´Поиск по дереву´_. Вы можете конвертировать
+разделах `Навигация по дереву`_ и `Поиск по дереву`_. Вы можете конвертировать
 ``NavigableString`` в строку Unicode с помощью ``unicode ()``::
 
  unicode_string = unicode(tag.string)
@@ -492,7 +492,7 @@ id = "boldest">`` имеет атрибут "id", значение которо�
  # <blockquote>No longer bold</blockquote>
 
 ``NavigableString`` поддерживает большинство функций, описанных в
-разделах `Навигация по дереву`_ и` Поиск по дереву`_, но
+разделах `Навигация по дереву`_ и `Поиск по дереву`_, но
 не все. В частности, поскольку строка не может ничего содержать (в том смысле,
 в котором тег может содержать строку или другой тег), строки не поддерживают
 атрибуты ``.contents`` и ``.string`` или метод ``find()``.
@@ -727,7 +727,7 @@ story". В некотором смысле эта строка также явл
 
 Если единственным дочерним элементом тега является другой тег, и у этого `другого` тега есть строка
 ``.string``, то считается, что родительский тег содержит ту же строку
-``.string``, что и дочерний тег.
+``.string``, что и дочерний тег::
 
  head_tag.contents
  # [<title>The Dormouse's story</title>]
@@ -744,7 +744,7 @@ story". В некотором смысле эта строка также явл
 
 .. _string-generators:
 
-``.strings`` и ``stripped_strings``
+``.strings`` и ``.stripped_strings``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Если внутри тега есть более одного элемента, вы все равно можете посмотреть только на
@@ -851,7 +851,7 @@ story". В некотором смысле эта строка также явл
 Перемещение вбок
 --------------
 
-Рассмотрим простой документ:
+Рассмотрим простой документ::
 
  sibling_soup = BeautifulSoup("<a><b>text1</b><c>text2</c></b></a>")
  print(sibling_soup.prettify())
@@ -871,7 +871,7 @@ story". В некотором смысле эта строка также явл
 Тег <b> и тег <c> находятся на одном уровне: они оба непосредственные
 дочерние элементы одного и того же тега. Мы называем их `сиблингами`. Когда документ
 красиво отформатирован, сиблинги выводятся с одинаковым  отступом. Вы
-также можете использовать это отношение в написанном вами коде коде.
+также можете использовать это отношение в написанном вами коде.
 
 ``.next_sibling`` и ``.previous_sibling``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -963,14 +963,14 @@ story". В некотором смысле эта строка также явл
  <p class="title"><b>The Dormouse's story</b></p>
 
 HTML-парсер берет эту строку символов и превращает ее в
-серию событий: "открыть тег <html> ","открыть тег <head>","открыть
-<html><title> тег "," добавить строку "," закрыть тег <title> "," открыть
+серию событий: "открыть тег <html>", "открыть тег <head>", "открыть
+тег <html>", "добавить строку", "закрыть тег <title>", "открыть
 тег <p>" и так далее. Beautiful Soup предлагает инструменты для реконструирование
 первоначального разбора документа.
 
 .. _element-generators:
 
-``.next_element`` and ``.previous_element``
+``.next_element`` и ``.previous_element``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Атрибут ``.next_element`` строки или тега указывает на то,
@@ -979,7 +979,7 @@ HTML-парсер берет эту строку символов и превр�
 
 Возьмём последний тег <a> в документе «три сестры». Его
 ``.next_sibling`` является строкой: конец предложения, которое было
-прервано началом тега <a>.::
+прервано началом тега <a>::
 
  last_a_tag = soup.find("a", id="link3")
  last_a_tag
@@ -1010,7 +1010,7 @@ HTML-парсер берет эту строку символов и превр�
  last_a_tag.previous_element.next_element
  # <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>
 
-``.next_elements`` and ``.previous_elements``
+``.next_elements`` и ``.previous_elements``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Вы уже должны были уловить идею. Вы можете использовать эти итераторы для перемещения
@@ -1063,7 +1063,7 @@ Beautiful Soup определяет множество методов поиск
 Прежде чем подробно рассказывать о ``find_all()`` и подобных методах, я
 хочу показать примеры различных фильтров, которые вы можете передать в эти
 методы. Эти фильтры появляются снова и снова в
-поисковом API Вы можете использовать их для фильтрации по имени тега,
+поисковом API. Вы можете использовать их для фильтрации по имени тега,
 по его атрибутам, по тексту строки или по некоторой их
 комбинации.
 
@@ -1080,7 +1080,7 @@ Beautiful Soup выполнит поиск соответствия этой с�
  # [<b>The Dormouse's story</b>]
 
 Если вы передадите байтовую строку, Beautiful Soup будет считать, что строка
-кодируется в UTF-8. Вы можете избежать этого, передав вместо этого строку Unicode.
+кодируется в UTF-8. Вы можете избежать этого, передав вместо нее строку Unicode.
 
 .. _a regular expression:
 
@@ -1172,8 +1172,8 @@ Beautiful Soup выполнит поиск соответствия этой с�
 
 Если вы передаете функцию для фильтрации по определенному атрибуту, такому как
 ``href``, аргументом, переданным в функцию, будет
-значение атрибута, а не весь тег. Вот функция, которая находит все теги ``a``
-чей атрибут ``href`` *не* соответствует регулярному выражению::
+значение атрибута, а не весь тег. Вот функция, которая находит все теги ``a``,
+у которых атрибут ``href`` *не* соответствует регулярному выражению::
 
  def not_lacie(href):
      return href and not re.compile("lacie").search(href)
@@ -1203,11 +1203,11 @@ Beautiful Soup выполнит поиск соответствия этой с�
 ``find_all()``
 --------------
 
-Signature: find_all(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`recursive
+Сигнатура: find_all(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`recursive
 <recursive>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
 
 Метод ``find_all()`` просматривает потомков тега и
-извлекает `всех` потомков , которые соответствую вашим фильтрам. Я привел несколько
+извлекает `всех` потомков, которые соответствую вашим фильтрам. Я привел несколько
 примеров в разделе `Виды фильтров`_, а вот еще несколько::
 
  soup.find_all("title")
@@ -1231,14 +1231,14 @@ Signature: find_all(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`recursive
 Некоторые из них уже встречались, но другие новые. Что означает
 передача значения для ``string`` или ``id``? Почему
 ``find_all ("p", "title")`` находит тег <p> с CSS-классом "title"?
-Давайте посмотрим на аргументы ``find_all ()``.
+Давайте посмотрим на аргументы ``find_all()``.
 
 .. _name:
 
 Аргумент ``name``
 ^^^^^^^^^^^^^^^^^^^^^
 
-Передайте значение для аргумента``name``, и вы скажете Beautiful Soup
+Передайте значение для аргумента ``name``, и вы скажете Beautiful Soup
 рассматривать только теги с определенными именами. Текстовые строки будут игнорироваться, так же как и
 теги, имена которых не соответствуют заданным.
 
@@ -1247,63 +1247,63 @@ Signature: find_all(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`recursive
  soup.find_all("title")
  # [<title>The Dormouse's story</title>]
 
-В разделе  `Виды фильтров`_говорилось, что значением ``name`` может быть
-`строка`_, `регулярное выражение`_, `список`_, `функция`_ или `значение
-True`_.
+В разделе  `Виды фильтров`_ говорилось, что значением ``name`` может быть
+`строка`_, `регулярное выражение`_, `список`_, `функция`_ или значение
+`True`_.
 
 .. _kwargs:
 
 Именованные аргументы
 ^^^^^^^^^^^^^^^^^^^^^
 
-Any argument that's not recognized will be turned into a filter on one
-of a tag's attributes. If you pass in a value for an argument called ``id``,
-Beautiful Soup will filter against each tag's 'id' attribute::
+Любой нераспознанный аргумент будет превращен в фильтр
+по атрибуту тега. Если вы передаете значение для аргумента с именем ``id``,
+Beautiful Soup будет фильтровать по атрибуту "id" каждого тега::
 
  soup.find_all(id='link2')
  # [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
 
-If you pass in a value for ``href``, Beautiful Soup will filter
-against each tag's 'href' attribute::
+Если вы передадите значение для ``href``, Beautiful Soup отфильтрует
+по атрибуту "href" каждого тега::
 
  soup.find_all(href=re.compile("elsie"))
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>]
 
-You can filter an attribute based on `a string`_, `a regular
-expression`_, `a list`_, `a function`_, or `the value True`_.
+Для фильтрации по атрибуту может использоваться `строка`_, `регулярное
+выражение`_, `список`_, `функция`_ или значение `True`_.
 
-This code finds all tags whose ``id`` attribute has a value,
-regardless of what the value is::
+Следующий код находит все теги, атрибут ``id`` которых имеет значение,
+независимо от того, что это за значение::
 
  soup.find_all(id=True)
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
  #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
  #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 
-You can filter multiple attributes at once by passing in more than one
-keyword argument::
+Вы можете отфильтровать несколько атрибутов одновременно, передав более одного
+именованного аргумента::
 
  soup.find_all(href=re.compile("elsie"), id='link1')
  # [<a class="sister" href="http://example.com/elsie" id="link1">three</a>]
 
-Some attributes, like the data-* attributes in HTML 5, have names that
-can't be used as the names of keyword arguments::
+Некоторые атрибуты, такие как атрибуты data-* в HTML 5, имеют имена, которые
+нельзя использовать в качестве имен именованных аргументов::
 
  data_soup = BeautifulSoup('<div data-foo="value">foo!</div>')
  data_soup.find_all(data-foo="value")
  # SyntaxError: keyword can't be an expression
 
-You can use these attributes in searches by putting them into a
-dictionary and passing the dictionary into ``find_all()`` as the
-``attrs`` argument::
+Вы можете использовать эти атрибуты в поиске, поместив их в
+словарь и передав словарь в ``find_all()`` как
+аргумент ``attrs``::
 
  data_soup.find_all(attrs={"data-foo": "value"})
  # [<div data-foo="value">foo!</div>]
 
-You can't use a keyword argument to search for HTML's 'name' element,
-because Beautiful Soup uses the ``name`` argument to contain the name
-of the tag itself. Instead, you can give a value to 'name' in the
-``attrs`` argument::
+Вы не можете использовать именованный аргумент для поиска в HTML по элементу 'name',
+потому что Beautiful Soup использует аргумент ``name`` для имени
+самого тега. Вместо этого вы можете передать элемент 'name' вместе с его значением в
+составе аргумента ``attrs``::
 
  name_soup = BeautifulSoup('<input name="email"/>')
  name_soup.find_all(name="email")
@@ -1313,22 +1313,22 @@ of the tag itself. Instead, you can give a value to 'name' in the
 
 .. _attrs:
 
-Searching by CSS class
+Поиск по классу CSS
 ^^^^^^^^^^^^^^^^^^^^^^
 
-It's very useful to search for a tag that has a certain CSS class, but
-the name of the CSS attribute, "class", is a reserved word in
-Python. Using ``class`` as a keyword argument will give you a syntax
-error. As of Beautiful Soup 4.1.2, you can search by CSS class using
-the keyword argument ``class_``::
+Очень удобно искать тег с определенным классом CSS, но
+имя атрибута CSS, "class", является зарезервированным словом в
+Python. Использование ``class`` в качестве именованного аргумента приведет к синтаксической
+ошибке. Начиная с Beautiful Soup 4.1.2, вы можете выполнять поиск по классу CSS, используя
+именованный аргумент ``class_``::
 
  soup.find_all("a", class_="sister")
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
  #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
  #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 
-As with any keyword argument, you can pass ``class_`` a string, a regular
-expression, a function, or ``True``::
+Как и с любым именованным аргументом, вы можете передать в качестве значения ``class_`` строку, регулярное
+выражение, функцию или ``True``::
 
  soup.find_all(class_=re.compile("itl"))
  # [<p class="title"><b>The Dormouse's story</b></p>]
@@ -1341,10 +1341,10 @@ expression, a function, or ``True``::
  #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
  #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 
-:ref:`Remember <multivalue>` that a single tag can have multiple
-values for its "class" attribute. When you search for a tag that
-matches a certain CSS class, you're matching against `any` of its CSS
-classes::
+:ref:`Помните <multivalue>`, что один тег может иметь несколько
+значений для атрибута "class". Когда вы ищете тег, который
+соответствует определенному классу CSS, вы ищете соответствие `любому` из его
+классов CSS::
 
  css_soup = BeautifulSoup('<p class="body strikeout"></p>')
  css_soup.find_all("p", class_="strikeout")
@@ -1353,26 +1353,26 @@ classes::
  css_soup.find_all("p", class_="body")
  # [<p class="body strikeout"></p>]
 
-You can also search for the exact string value of the ``class`` attribute::
+Вы также можете искать точное строковое значение атрибута ``class``::
 
  css_soup.find_all("p", class_="body strikeout")
  # [<p class="body strikeout"></p>]
 
-But searching for variants of the string value won't work::
+Но поиск вариантов строкового значения не сработает::
 
  css_soup.find_all("p", class_="strikeout body")
  # []
 
-If you want to search for tags that match two or more CSS classes, you
-should use a CSS selector::
+Если вы хотите искать теги, которые соответствуют двум или более классам CSS, вам
+следует использовать селектор CSS::
 
  css_soup.select("p.strikeout.body")
  # [<p class="body strikeout"></p>]
 
-In older versions of Beautiful Soup, which don't have the ``class_``
-shortcut, you can use the ``attrs`` trick mentioned above. Create a
-dictionary whose value for "class" is the string (or regular
-expression, or whatever) you want to search for::
+В старых версиях Beautiful Soup, в которых нет ярлыка ``class_``
+вы можете использовать трюк  с аргументом ``attrs``, упомянутый выше. Создайте
+словарь, значение которого для "class" является строкой (или регулярным
+выражением, или чем угодно еще), которую вы хотите найти::
 
  soup.find_all("a", attrs={"class": "sister"})
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
@@ -1381,13 +1381,13 @@ expression, or whatever) you want to search for::
 
 .. _string:
 
-The ``string`` argument
+Аргумент ``string``
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-With ``string`` you can search for strings instead of tags. As with
-``name`` and the keyword arguments, you can pass in `a string`_, `a
-regular expression`_, `a list`_, `a function`_, or `the value True`_.
-Here are some examples::
+С помощью ``string`` вы можете искать строки вместо тегов. Как и в случае с
+``name`` и именованными аргументами, передаваться может `строка`_,
+`регулярное выражение`_, `список`_, `функция`_ или значения `True`_.
+Вот несколько примеров::
 
  soup.find_all(string="Elsie")
  # [u'Elsie']
@@ -1405,33 +1405,33 @@ Here are some examples::
  soup.find_all(string=is_the_only_string_within_a_tag)
  # [u"The Dormouse's story", u"The Dormouse's story", u'Elsie', u'Lacie', u'Tillie', u'...']
 
-Although ``string`` is for finding strings, you can combine it with
-arguments that find tags: Beautiful Soup will find all tags whose
-``.string`` matches your value for ``string``. This code finds the <a>
-tags whose ``.string`` is "Elsie"::
+Хотя значение типа ``string`` предназначено для поиска строк, вы можете комбинировать его с
+аргументами, которые находят теги: Beautiful Soup найдет все теги, в которых
+``.string`` соответствует вашему значению для ``string``. Следующий код находит все теги <a>,
+у которых ``.string`` равно "Elsie"::
 
  soup.find_all("a", string="Elsie")
  # [<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>]
 
-The ``string`` argument is new in Beautiful Soup 4.4.0. In earlier
-versions it was called ``text``::
+Аргумент ``string`` - это новое в Beautiful Soup 4.4.0. В ранних
+версиях он назывался ``text``::
 
  soup.find_all("a", text="Elsie")
  # [<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>]
 
 .. _limit:
 
-The ``limit`` argument
+Аргумент ``limit``
 ^^^^^^^^^^^^^^^^^^^^^^
 
-``find_all()`` returns all the tags and strings that match your
-filters. This can take a while if the document is large. If you don't
-need `all` the results, you can pass in a number for ``limit``. This
-works just like the LIMIT keyword in SQL. It tells Beautiful Soup to
-stop gathering results after it's found a certain number.
+``find_all()`` возвращает все теги и строки, которые соответствуют вашим
+фильтрам. Это может занять некоторое время, если документ большой. Если вам не
+нужны `все` результаты, вы можете указать их предельное число - ``limit``. Это
+работает так же, как ключевое слово LIMIT в SQL. Оно говорит Beautiful Soup
+прекратить собирать результаты после того, как их найдено определенное количество.
 
-There are three links in the "three sisters" document, but this code
-only finds the first two::
+В документе «три сестры» есть три ссылки, но следующий код
+находит только первые два::
 
  soup.find_all("a", limit=2)
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
@@ -1439,13 +1439,13 @@ only finds the first two::
 
 .. _recursive:
 
-The ``recursive`` argument
+Аргумент ``recursive``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you call ``mytag.find_all()``, Beautiful Soup will examine all the
-descendants of ``mytag``: its children, its children's children, and
-so on. If you only want Beautiful Soup to consider direct children,
-you can pass in ``recursive=False``. See the difference here::
+Если вы вызовете ``mytag.find_all()``, Beautiful Soup проверит всех
+потомков ``mytag``: его дочерние теги, дочерние теги дочерних тегов, и
+так далее. Если вы хотите, чтобы Beautiful Soup рассматривал только непосредственных потомков (дочерние теги),
+вы можете передать ``recursive = False``. Оцените разницу::
 
  soup.html.find_all("title")
  # [<title>The Dormouse's story</title>]
@@ -1453,7 +1453,7 @@ you can pass in ``recursive=False``. See the difference here::
  soup.html.find_all("title", recursive=False)
  # []
 
-Here's that part of the document::
+Вот эта часть документа::
 
  <html>
   <head>
@@ -1463,32 +1463,32 @@ Here's that part of the document::
   </head>
  ...
 
-The <title> tag is beneath the <html> tag, but it's not `directly`
-beneath the <html> tag: the <head> tag is in the way. Beautiful Soup
-finds the <title> tag when it's allowed to look at all descendants of
-the <html> tag, but when ``recursive=False`` restricts it to the
-<html> tag's immediate children, it finds nothing.
+Тег <title> находится под тегом <html>, но не `непосредственно`
+под тегом <html>: на пути встречается тег <head>. Beautiful Soup
+находит тег <title>, когда разрешено просматривать всех потомков
+тега <html>, но когда ``recursive=False`` ограничивает поиск
+только непосредстввенно дочерними тегами,  Beautiful Soup ничего не находит.
 
-Beautiful Soup offers a lot of tree-searching methods (covered below),
-and they mostly take the same arguments as ``find_all()``: ``name``,
-``attrs``, ``string``, ``limit``, and the keyword arguments. But the
-``recursive`` argument is different: ``find_all()`` and ``find()`` are
-the only methods that support it. Passing ``recursive=False`` into a
-method like ``find_parents()`` wouldn't be very useful.
+Beautiful Soup предлагает множество методов поиска по дереву (они рассмотрены ниже),
+и они в основном принимают те же аргументы, что и ``find_all()``: ``name``,
+``attrs``, ``string``, ``limit``, и именованные аргументы. Но
+с аргументом ``recursive`` все иначе:  ``find_all()`` и ``find()`` - 
+это единственные методы, которые его поддерживают. От передачи ``recursive=False`` в
+метод типа ``find_parents()`` не очень много пользы.
 
-Calling a tag is like calling ``find_all()``
+Вызов тега похож на вызов ``find_all()``
 --------------------------------------------
 
-Because ``find_all()`` is the most popular method in the Beautiful
-Soup search API, you can use a shortcut for it. If you treat the
-``BeautifulSoup`` object or a ``Tag`` object as though it were a
-function, then it's the same as calling ``find_all()`` on that
-object. These two lines of code are equivalent::
+Поскольку ``find_all()`` является самым популярным методом в Beautiful
+Soup API, вы можете использовать сокращенную запись. Если относиться к 
+объекту  ``BeautifulSoup`` или объекту ``Tag`` так, будто это
+функция, то это похоже на вызов ``find_all()``
+﻿с этим объектом. Эти две строки кода эквивалентны::
 
  soup.find_all("a")
  soup("a")
 
-These two lines are also equivalent::
+Эти две строки также эквивалентны::
 
  soup.title.find_all(string=True)
  soup.title(string=True)
@@ -1496,15 +1496,15 @@ These two lines are also equivalent::
 ``find()``
 ----------
 
-Signature: find(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`recursive
+Сигнатура: find(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`recursive
 <recursive>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
 
-The ``find_all()`` method scans the entire document looking for
-results, but sometimes you only want to find one result. If you know a
-document only has one <body> tag, it's a waste of time to scan the
-entire document looking for more. Rather than passing in ``limit=1``
-every time you call ``find_all``, you can use the ``find()``
-method. These two lines of code are `nearly` equivalent::
+Метод ``find_all()`` сканирует весь документ в поиске
+всех результатов, но иногда вам нужен только один. Если вы знаете,
+что в документе есть только один тег <body>, нет смысла сканировать
+весь документ в поиске остальных. Вместо того, чтобы передавать ``limit=1``
+каждый раз, когда вы вызываете ``find_all()``, используйте
+метод ``find()``. Эти две строки кода эквивалентны::
 
  soup.find_all('title', limit=1)
  # [<title>The Dormouse's story</title>]
@@ -1512,17 +1512,17 @@ method. These two lines of code are `nearly` equivalent::
  soup.find('title')
  # <title>The Dormouse's story</title>
 
-The only difference is that ``find_all()`` returns a list containing
-the single result, and ``find()`` just returns the result.
+Разница лишь в том, что ``find_all()`` возвращает список, содержащий
+единственный результат, а ``find()`` возвращает только сам результат.
 
-If ``find_all()`` can't find anything, it returns an empty list. If
-``find()`` can't find anything, it returns ``None``::
+Если ``find_all()`` не может ничего найти, он возвращает пустой список. Если
+``find()`` не может ничего найти, он возвращает ``None``::
 
  print(soup.find("nosuchtag"))
  # None
 
-Remember the ``soup.head.title`` trick from `Navigating using tag
-names`_? That trick works by repeatedly calling ``find()``::
+Помните трюк с ``soup.head.title`` из раздела
+`Навигация с использованием имен тегов`_? Этот трюк работает на основе неоднократного вызова ``find()``::
 
  soup.head.title
  # <title>The Dormouse's story</title>
@@ -1530,26 +1530,26 @@ names`_? That trick works by repeatedly calling ``find()``::
  soup.find("head").find("title")
  # <title>The Dormouse's story</title>
 
-``find_parents()`` and ``find_parent()``
+``find_parents()`` и ``find_parent()``
 ----------------------------------------
 
-Signature: find_parents(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_parents(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
 
-Signature: find_parent(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_parent(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
 
-I spent a lot of time above covering ``find_all()`` and
-``find()``. The Beautiful Soup API defines ten other methods for
-searching the tree, but don't be afraid. Five of these methods are
-basically the same as ``find_all()``, and the other five are basically
-the same as ``find()``. The only differences are in what parts of the
-tree they search.
+Я долго объяснял, как работают ``find_all()`` и
+``find()``. Beautiful Soup API определяет десяток других методов для
+поиска по дереву, но пусть вас это не пугает. Пять из этих методов
+в целом похожи на ``find_all()``, а другие пять в целом
+похожи на ``find()``. Единственное различия в том, по каким частям
+дерева они ищут.
 
-First let's consider ``find_parents()`` and
-``find_parent()``. Remember that ``find_all()`` and ``find()`` work
-their way down the tree, looking at tag's descendants. These methods
-do the opposite: they work their way `up` the tree, looking at a tag's
-(or a string's) parents. Let's try them out, starting from a string
-buried deep in the "three daughters" document::
+Сначала давайте рассмотрим ``find_parents()`` и
+``find_parent()``. Помните, что ``find_all()`` и ``find()`` прорабатывают
+дерево сверху вниз, просматривая теги и их потомков. ``find_parents()`` и ``find_parent()``
+делают наоборот: они идут `снизу вверх`, рассматривая
+родительские элементы тега или строки. Давайте испытаем их, начав со строки,
+погребенной глубоко в документе "три сестры"::
 
   a_string = soup.find(string="Lacie")
   a_string
@@ -1568,30 +1568,30 @@ buried deep in the "three daughters" document::
   a_string.find_parents("p", class="title")
   # []
 
-One of the three <a> tags is the direct parent of the string in
-question, so our search finds it. One of the three <p> tags is an
-indirect parent of the string, and our search finds that as
-well. There's a <p> tag with the CSS class "title" `somewhere` in the
-document, but it's not one of this string's parents, so we can't find
-it with ``find_parents()``.
+Один из трех тегов <a> является прямым родителем искомой строки,
+так что наш поиск находит его. Один из трех тегов <p> является
+непрямым родителем строки, и наш поиск тоже его
+находит. Где-то в документе есть тег <p> с классом CSS "title",
+но он не является родительским для строки, так что мы не можем найти
+его с помощью ``find_parents()``.
 
-You may have made the connection between ``find_parent()`` and
-``find_parents()``, and the `.parent`_ and `.parents`_ attributes
-mentioned earlier. The connection is very strong. These search methods
-actually use ``.parents`` to iterate over all the parents, and check
-each one against the provided filter to see if it matches.
+Вы могли заметить связь между ``find_parent()``,
+``find_parents()`` и атрибутами `.parent`_ и `.parents`_,
+упомянутыми ранее. Связь очень сильная. Эти методы поиска
+на самом деле используют ``.parents``, чтобы перебрать все родительские элементы и проверить
+каждый из них на соответствие заданному фильтру.
 
-``find_next_siblings()`` and ``find_next_sibling()``
+``find_next_siblings()`` и ``find_next_sibling()``
 ----------------------------------------------------
 
-Signature: find_next_siblings(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_next_siblings(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
 
-Signature: find_next_sibling(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_next_sibling(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
 
-These methods use :ref:`.next_siblings <sibling-generators>` to
-iterate over the rest of an element's siblings in the tree. The
-``find_next_siblings()`` method returns all the siblings that match,
-and ``find_next_sibling()`` only returns the first one::
+Эти методы используют :ref:`.next_siblings <sibling-generators>` для
+перебора остальных сиблингов элемента в дереве. Метод
+``find_next_siblings()`` возвращает всех  подходящих сиблингов,
+а ``find_next_sibling()`` возвращает только первый из них::
 
  first_link = soup.a
  first_link
@@ -1605,17 +1605,17 @@ and ``find_next_sibling()`` only returns the first one::
  first_story_paragraph.find_next_sibling("p")
  # <p class="story">...</p>
 
-``find_previous_siblings()`` and ``find_previous_sibling()``
+``find_previous_siblings()`` и ``find_previous_sibling()``
 ------------------------------------------------------------
 
-Signature: find_previous_siblings(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_previous_siblings(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
 
-Signature: find_previous_sibling(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_previous_sibling(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
 
-These methods use :ref:`.previous_siblings <sibling-generators>` to iterate over an element's
-siblings that precede it in the tree. The ``find_previous_siblings()``
-method returns all the siblings that match, and
-``find_previous_sibling()`` only returns the first one::
+Эти методы используют :ref:`.previous_siblings <sibling-generators>` для перебора тех сиблингов элемента,
+которые предшествуют ему в дереве разбора. Метод ``find_previous_siblings()``
+возвращает всех подходящих сиблингов, а
+а ``find_next_sibling()`` только первого из них::
 
  last_link = soup.find("a", id="link3")
  last_link
@@ -1630,17 +1630,17 @@ method returns all the siblings that match, and
  # <p class="title"><b>The Dormouse's story</b></p>
 
 
-``find_all_next()`` and ``find_next()``
+``find_all_next()`` и ``find_next()``
 ---------------------------------------
 
-Signature: find_all_next(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_all_next(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
 
-Signature: find_next(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_next(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
 
-These methods use :ref:`.next_elements <element-generators>` to
-iterate over whatever tags and strings that come after it in the
-document. The ``find_all_next()`` method returns all matches, and
-``find_next()`` only returns the first match::
+Эти методы используют :ref:`.next_elements <element-generators>` для
+перебора любых тегов и строк, которые встречаются в документе после
+элемента. Метод ``find_all_next()`` возвращает все совпадения, а
+``find_next()`` только первое::
 
  first_link = soup.a
  first_link
@@ -1653,24 +1653,24 @@ document. The ``find_all_next()`` method returns all matches, and
  first_link.find_next("p")
  # <p class="story">...</p>
 
-In the first example, the string "Elsie" showed up, even though it was
-contained within the <a> tag we started from. In the second example,
-the last <p> tag in the document showed up, even though it's not in
-the same part of the tree as the <a> tag we started from. For these
-methods, all that matters is that an element match the filter, and
-show up later in the document than the starting element.
+В первом примере нашлась строка "Elsie", хотя она
+содержится в теге <a>, с которого мы начали. Во втором примере
+нашелся последний тег <p>, хотя он находится
+в другой части дерева, чем тег <a>, с которого мы начали. Для этих
+методов имеет значение только то, что элемент соответствует фильтру и
+появляется в документе позже, чем тот элемент, с которого начали поиск.
 
-``find_all_previous()`` and ``find_previous()``
+``find_all_previous()`` и ``find_previous()``
 -----------------------------------------------
 
-Signature: find_all_previous(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_all_previous(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`limit <limit>`, :ref:`**kwargs <kwargs>`)
 
-Signature: find_previous(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
+Сигнатура: find_previous(:ref:`name <name>`, :ref:`attrs <attrs>`, :ref:`string <string>`, :ref:`**kwargs <kwargs>`)
 
-These methods use :ref:`.previous_elements <element-generators>` to
-iterate over the tags and strings that came before it in the
-document. The ``find_all_previous()`` method returns all matches, and
-``find_previous()`` only returns the first match::
+Эти методы используют :ref:`.previous_elements <element-generators>` для
+перебора любых тегов и строк, которые встречаются в документе до
+элемента. Метод ``find_all_previous()`` возвращает все совпадения, а
+``find_previous()`` только первое::
 
  first_link = soup.a
  first_link
@@ -1683,35 +1683,35 @@ document. The ``find_all_previous()`` method returns all matches, and
  first_link.find_previous("title")
  # <title>The Dormouse's story</title>
 
-The call to ``find_all_previous("p")`` found the first paragraph in
-the document (the one with class="title"), but it also finds the
-second paragraph, the <p> tag that contains the <a> tag we started
-with. This shouldn't be too surprising: we're looking at all the tags
-that show up earlier in the document than the one we started with. A
-<p> tag that contains an <a> tag must have shown up before the <a>
-tag it contains.
+Вызов ``find_all_previous ("p")`` нашел первый абзац в
+документе (тот, который с class = "title"), но он также находит
+второй абзац, тег <p>, содержащий тег <a>, с которого мы
+начали. Это не так уж удивительно: мы смотрим на все теги,
+которые появляются в документе раньше, чем тот, с которого мы начали. Тег
+<p>, содержащий тег <a>, должен был появиться до тега <a>, который
+в нем содержится.
 
-CSS selectors
+Селекторы CSS
 -------------
 
-As of version 4.7.0, Beautiful Soup supports most CSS4 selectors via
-the `SoupSieve <https://facelessuser.github.io/soupsieve/>`_
-project. If you installed Beautiful Soup through ``pip``, SoupSieve
-was installed at the same time, so you don't have to do anything extra.
+Начиная с версии 4.7.0, Beautiful Soup поддерживает большинство селекторов CSS4 благодаря
+проекту `SoupSieve 
+<https://facelessuser.github.io/soupsieve/>`_. Если вы установили Beautiful Soup через ``pip``, SoupSieve
+был установлен одновременно с ним, так что вам не нужно делать ничего дополнительно.
 
-``BeautifulSoup`` has a ``.select()`` method which uses SoupSieve to
-run a CSS selector against a parsed document and return all the
-matching elements. ``Tag`` has a similar method which runs a CSS
-selector against the contents of a single tag.
+В ``BeautifulSoup`` есть метод ``.select()``, который использует SoupSieve, чтобы
+запустить селектор CSS и вернуть все
+подходящие элементы. ``Tag`` имеет похожий метод, который запускает селектор CSS
+в отношении содержимого одного тега.
 
-(Earlier versions of Beautiful Soup also have the ``.select()``
-method, but only the most commonly-used CSS selectors are supported.)
+(В более ранних версиях Beautiful Soup тоже есть метод ``.select()``,
+но поддерживаются только наиболее часто используемые селекторы CSS.)
 
-The SoupSieve `documentation
-<https://facelessuser.github.io/soupsieve/>`_ lists all the currently
-supported CSS selectors, but here are some of the basics:
+В `документации SoupSieve
+<https://facelessuser.github.io/soupsieve/>`_ перечислены все
+селекторы CSS, которые поддерживаются на данный момент, но вот некоторые из основных:
 
-You can find tags::
+Вы можете найти теги::
 
  soup.select("title")
  # [<title>The Dormouse's story</title>]
@@ -1719,7 +1719,7 @@ You can find tags::
  soup.select("p:nth-of-type(3)")
  # [<p class="story">...</p>]
 
-Find tags beneath other tags::
+Найти теги под другими тегами::
 
  soup.select("body a")
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
@@ -1729,7 +1729,7 @@ Find tags beneath other tags::
  soup.select("html head title")
  # [<title>The Dormouse's story</title>]
 
-Find tags `directly` beneath other tags::
+Найти теги `непосредственно` под другими тегами::
 
  soup.select("head > title")
  # [<title>The Dormouse's story</title>]
@@ -1748,7 +1748,7 @@ Find tags `directly` beneath other tags::
  soup.select("body > a")
  # []
 
-Find the siblings of tags::
+Найти сиблингов тега::
 
  soup.select("#link1 ~ .sister")
  # [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
@@ -1757,7 +1757,7 @@ Find the siblings of tags::
  soup.select("#link1 + .sister")
  # [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
 
-Find tags by CSS class::
+Найти теги по классу CSS::
 
  soup.select(".sister")
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
@@ -1769,7 +1769,7 @@ Find tags by CSS class::
  #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
  #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 
-Find tags by ID::
+Найти теги по ID::
 
  soup.select("#link1")
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>]
@@ -1777,20 +1777,20 @@ Find tags by ID::
  soup.select("a#link2")
  # [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
 
-Find tags that match any selector from a list of selectors::
+Найти теги, которые соответствуют любому селектору из списка::
 
  soup.select("#link1,#link2")
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
  #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
 
-Test for the existence of an attribute::
+Проверка на наличие атрибута::
 
  soup.select('a[href]')
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
  #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
  #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 
-Find tags by attribute value::
+Найти теги по значению атрибута::
 
  soup.select('a[href="http://example.com/elsie"]')
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>]
@@ -1806,14 +1806,14 @@ Find tags by attribute value::
  soup.select('a[href*=".com/el"]')
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>]
 
-There's also a method called ``select_one()``, which finds only the
-first tag that matches a selector::
+Есть также метод ``select_one()``, который находит только
+первый тег, соответствующий селектору::
 
  soup.select_one(".sister")
  # <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
 
-If you've parsed XML that defines namespaces, you can use them in CSS
-selectors.::
+Если вы разобрали XML, в котором определено пространства имен, вы можете использовать их в
+селекторах CSS::
 
  from bs4 import BeautifulSoup
  xml = """<tag xmlns:ns1="http://namespace1/" xmlns:ns2="http://namespace2/">
@@ -1828,34 +1828,34 @@ selectors.::
  soup.select("ns1|child", namespaces=namespaces)
  # [<ns1:child>I'm in namespace 1</ns1:child>]
 
-When handling a CSS selector that uses namespaces, Beautiful Soup
-uses the namespace abbreviations it found when parsing the
-document. You can override this by passing in your own dictionary of
-abbreviations::
+При обработке селектора CSS, который использует пространства имен, Beautiful Soup
+использует сокращения пространства имен, найденные при разборе
+документа. Вы можете заменить сокращения своими собственными, передав словарь
+сокращений::
 
  namespaces = dict(first="http://namespace1/", second="http://namespace2/")
  soup.select("second|child", namespaces=namespaces)
  # [<ns1:child>I'm in namespace 2</ns1:child>]
  
-All this CSS selector stuff is a convenience for people who already
-know the CSS selector syntax. You can do all of this with the
-Beautiful Soup API. And if CSS selectors are all you need, you should
-parse the document with lxml: it's a lot faster. But this lets you
-`combine` CSS selectors with the Beautiful Soup API.
+Все эти селекторы CSS удобны для тех, кто уже
+знаком с синтаксисом селекторов CSS. Вы можете сделать все это с помощью
+Beautiful Soup API. И если CSS селекторы - это все, что вам нужно, вам следует
+использовать парсер lxml: это намного быстрее. Но вы можете
+`комбинировать` селекторы CSS с Beautiful Soup API.
 
-Modifying the tree
+Изменение дерева
 ==================
 
-Beautiful Soup's main strength is in searching the parse tree, but you
-can also modify the tree and write your changes as a new HTML or XML
-document.
+Основная сила Beautiful Soup в поиске по дереву разбора, но вы
+также можете изменить дерево и записать свои изменения в виде нового HTML- или XML-
+документа.
 
-Changing tag names and attributes
+Изменение имен тегов и атрибутов
 ---------------------------------
 
-I covered this earlier, in `Attributes`_, but it bears repeating. You
-can rename a tag, change the values of its attributes, add new
-attributes, and delete attributes::
+Я говорил об этом раньше, в разделе `Атрибуты`_, но это стоит повторить. Вы
+можете переименовать тег, изменить значения его атрибутов, добавить новые
+атрибуты и удалить атрибуты::
 
  soup = BeautifulSoup('<b class="boldest">Extremely bold</b>')
  tag = soup.b
@@ -1871,11 +1871,11 @@ attributes, and delete attributes::
  tag
  # <blockquote>Extremely bold</blockquote>
 
-Modifying ``.string``
+Изменение ``.string``
 ---------------------
 
-If you set a tag's ``.string`` attribute to a new string, the tag's contents are
-replaced with that string::
+Если вы замените значение атрибута ``.string`` новой строкой, содержимое тега будет
+заменено на эту строку::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -1885,14 +1885,14 @@ replaced with that string::
   tag
   # <a href="http://example.com/">New link text.</a>
   
-Be careful: if the tag contained other tags, they and all their
-contents will be destroyed.  
+Будьте осторожны: если тег содержит другие теги, они и все их
+содержимое будет уничтожено.  
 
 ``append()``
 ------------
 
-You can add to a tag's contents with ``Tag.append()``. It works just
-like calling ``.append()`` on a Python list::
+Вы можете добавить содержимое тега с помощью ``Tag.append()``. Это работает
+точно так же, как ``.append()`` для списка в Python::
 
    soup = BeautifulSoup("<a>Foo</a>")
    soup.a.append("Bar")
@@ -1905,9 +1905,9 @@ like calling ``.append()`` on a Python list::
 ``extend()``
 ------------
 
-Starting in Beautiful Soup 4.7.0, ``Tag`` also supports a method
-called ``.extend()``, which works just like calling ``.extend()`` on a
-Python list::
+Начиная с версии Beautiful Soup 4.7.0, ``Tag`` также поддерживает метод
+``.extend()``, который работает так же, как вызов ``.extend()`` для
+списка в Python::
 
    soup = BeautifulSoup("<a>Soup</a>")
    soup.a.extend(["'s", " ", "on"])
@@ -1917,12 +1917,12 @@ Python list::
    soup.a.contents
    # [u'Soup', u''s', u' ', u'on']
    
-``NavigableString()`` and ``.new_tag()``
+``NavigableString()`` и ``.new_tag()``
 -------------------------------------------------
 
-If you need to add a string to a document, no problem--you can pass a
-Python string in to ``append()``, or you can call the ``NavigableString``
-constructor::
+Если вам нужно добавить строку в документ, нет проблем - вы можете передать
+строку Python в ``append()`` или вызвать 
+конструктор ``NavigableString``::
 
    soup = BeautifulSoup("<b></b>")
    tag = soup.b
@@ -1934,8 +1934,8 @@ constructor::
    tag.contents
    # [u'Hello', u' there']
 
-If you want to create a comment or some other subclass of
-``NavigableString``, just call the constructor::
+Если вы хотите создать комментарий или другой подкласс
+``NavigableString``, просто вызовите конструктор::
 
    from bs4 import Comment
    new_comment = Comment("Nice to see you.")
@@ -1945,10 +1945,10 @@ If you want to create a comment or some other subclass of
    tag.contents
    # [u'Hello', u' there', u'Nice to see you.']
 
-(This is a new feature in Beautiful Soup 4.4.0.)
+(Это новая функция в Beautiful Soup 4.4.0.)
 
-What if you need to create a whole new tag?  The best solution is to
-call the factory method ``BeautifulSoup.new_tag()``::
+Что делать, если вам нужно создать совершенно новый тег?  Наилучшим решением будет
+вызвать фабричный метод ``BeautifulSoup.new_tag()``::
 
    soup = BeautifulSoup("<b></b>")
    original_tag = soup.b
@@ -1962,15 +1962,15 @@ call the factory method ``BeautifulSoup.new_tag()``::
    original_tag
    # <b><a href="http://www.example.com">Link text.</a></b>
 
-Only the first argument, the tag name, is required.
+Нужен только первый аргумент, имя тега.
 
 ``insert()``
 ------------
 
-``Tag.insert()`` is just like ``Tag.append()``, except the new element
-doesn't necessarily go at the end of its parent's
-``.contents``. It'll be inserted at whatever numeric position you
-say. It works just like ``.insert()`` on a Python list::
+``Tag.insert()`` похож на ``Tag.append()``, за исключением того, что новый элемент
+не обязательно добавляется в конец родительского
+``.contents``. Он добавится в любое место, номер которого
+вы укажете. Это работает в точности как ``.insert()`` в списке Python::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -1982,11 +1982,11 @@ say. It works just like ``.insert()`` on a Python list::
   tag.contents
   # [u'I linked to ', u'but did not endorse', <i>example.com</i>]
 
-``insert_before()`` and ``insert_after()``
+``insert_before()`` и ``insert_after()``
 ------------------------------------------
 
-The ``insert_before()`` method inserts tags or strings immediately
-before something else in the parse tree::
+Метод ``insert_before()`` вставляет теги или строки непосредственно
+перед чем-то в дереве разбора::
 
    soup = BeautifulSoup("<b>stop</b>")
    tag = soup.new_tag("i")
@@ -1995,8 +1995,8 @@ before something else in the parse tree::
    soup.b
    # <b><i>Don't</i>stop</b>
 
-The ``insert_after()`` method inserts tags or strings immediately
-following something else in the parse tree::
+Метод ``insert_after()`` вставляет теги или строки непосредственно
+после чего-то в дереве разбора::
 
    div = soup.new_tag('div')
    div.string = 'ever'
@@ -2009,7 +2009,7 @@ following something else in the parse tree::
 ``clear()``
 -----------
 
-``Tag.clear()`` removes the contents of a tag::
+``Tag.clear()`` удаляет содержимое тега::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -2022,8 +2022,8 @@ following something else in the parse tree::
 ``extract()``
 -------------
 
-``PageElement.extract()`` removes a tag or string from the tree. It
-returns the tag or string that was extracted::
+``PageElement.extract()`` удаляет тег или строку из дерева. Он
+возвращает тег или строку, которая была извлечена и удалена::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -2040,10 +2040,10 @@ returns the tag or string that was extracted::
   print(i_tag.parent)
   None
 
-At this point you effectively have two parse trees: one rooted at the
-``BeautifulSoup`` object you used to parse the document, and one rooted
-at the tag that was extracted. You can go on to call ``extract`` on
-a child of the element you extracted::
+К этому моменту у вас фактически есть два дерева разбора: одно в
+объекте ``BeautifulSoup``, который вы использовали, чтобы разобрать документ, другое в
+теге, который был извлечен. Вы можете далее вызывать ``extract`` в отношении
+дочернего элемента того тега, который был извлечен::
 
   my_string = i_tag.string.extract()
   my_string
@@ -2058,8 +2058,8 @@ a child of the element you extracted::
 ``decompose()``
 ---------------
 
-``Tag.decompose()`` removes a tag from the tree, then `completely
-destroys it and its contents`::
+``Tag.decompose()`` удаляет тег из дерева, а затем `полностью
+уничтожает его вместе с его содержимым`::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -2076,8 +2076,8 @@ destroys it and its contents`::
 ``replace_with()``
 ------------------
 
-``PageElement.replace_with()`` removes a tag or string from the tree,
-and replaces it with the tag or string of your choice::
+``PageElement.extract()`` удаляет тег или строку из дерева
+и заменяет его тегом или строкой по вашему выбору::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -2090,14 +2090,14 @@ and replaces it with the tag or string of your choice::
   a_tag
   # <a href="http://example.com/">I linked to <b>example.net</b></a>
 
-``replace_with()`` returns the tag or string that was replaced, so
-that you can examine it or add it back to another part of the tree.
+``replace_with()`` возвращает тег или строку, которые были заменены, так что
+вы можете изучить его или добавить его обратно в другую часть дерева.
 
 ``wrap()``
 ----------
 
-``PageElement.wrap()`` wraps an element in the tag you specify. It
-returns the new wrapper::
+``PageElement.wrap()`` обертывает элемент в указанный вами тег. Он
+возвращает новую обертку::
 
  soup = BeautifulSoup("<p>I wish I was bold.</p>")
  soup.p.string.wrap(soup.new_tag("b"))
@@ -2106,13 +2106,13 @@ returns the new wrapper::
  soup.p.wrap(soup.new_tag("div")
  # <div><p><b>I wish I was bold.</b></p></div>
 
-This method is new in Beautiful Soup 4.0.5.
+Это новый метод в Beautiful Soup 4.0.5.
 
 ``unwrap()``
 ---------------------------
 
-``Tag.unwrap()`` is the opposite of ``wrap()``. It replaces a tag with
-whatever's inside that tag. It's good for stripping out markup::
+``Tag.unwrap()`` - это противоположность ``wrap()``. Он заменяет весь тег на
+его содержимое. Этим методом удобно очищать разметку::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -2122,13 +2122,13 @@ whatever's inside that tag. It's good for stripping out markup::
   a_tag
   # <a href="http://example.com/">I linked to example.com</a>
 
-Like ``replace_with()``, ``unwrap()`` returns the tag
-that was replaced.
+Как и ``replace_with()``, ``unwrap()`` возвращает тег,
+который был заменен.
 
 ``smooth()``
 ---------------------------
 
-After calling a bunch of methods that modify the parse tree, you may end up with two or more ``NavigableString`` objects next to each other. Beautiful Soup doesn't have any problems with this, but since it can't happen in a freshly parsed document, you might not expect behavior like the following::
+После вызова ряда методов, которые изменяют дерево разбора, у вас может оказаться несколько объектов ``NavigableString`` подряд. У Beautiful Soup с этим нет проблем, но поскольку такое не случается со свежеразобранным документом, вам может показаться неожиданным следующее поведение::
 
   soup = BeautifulSoup("<p>A one</p>")
   soup.p.append(", a two")
@@ -2145,7 +2145,7 @@ After calling a bunch of methods that modify the parse tree, you may end up with
   #  , a two
   # </p>
 
-You can call ``Tag.smooth()`` to clean up the parse tree by consolidating adjacent strings::
+Вы можете вызвать ``Tag.smooth()``, чтобы очистить дерево разбора путем объединения смежных строк::
 
  soup.smooth()
 
@@ -2157,19 +2157,19 @@ You can call ``Tag.smooth()`` to clean up the parse tree by consolidating adjace
  #  A one, a two
  # </p>
 
-The ``smooth()`` method is new in Beautiful Soup 4.8.0.
+``smooth()`` - это новый метод в Beautiful Soup 4.8.0.
 
-Output
+Вывод
 ======
 
 .. _.prettyprinting:
 
-Pretty-printing
+Красивое форматирование
 ---------------
 
-The ``prettify()`` method will turn a Beautiful Soup parse tree into a
-nicely formatted Unicode string, with a separate line for each
-tag and each string::
+Метод ``prettify()`` превратит дерево разбора Beautiful Soup в
+красиво отформатированную строку Unicode, где каждый
+тег и каждая строка выводятся на отдельной строчке::
 
   markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
   soup = BeautifulSoup(markup)
@@ -2190,8 +2190,8 @@ tag and each string::
   #  </body>
   # </html>
 
-You can call ``prettify()`` on the top-level ``BeautifulSoup`` object,
-or on any of its ``Tag`` objects::
+Вы можете вызвать ``prettify()`` для объекта ``BeautifulSoup`` верхнего уровня
+или для любого из его объектов ``Tag``::
 
   print(soup.a.prettify())
   # <a href="http://example.com/">
@@ -2201,12 +2201,12 @@ or on any of its ``Tag`` objects::
   #  </i>
   # </a>
 
-Non-pretty printing
+Без красивого форматирования
 -------------------
 
-If you just want a string, with no fancy formatting, you can call
-``unicode()`` or ``str()`` on a ``BeautifulSoup`` object, or a ``Tag``
-within it::
+Если вам нужна просто строка, без особого форматирования, вы можете вызвать
+``unicode()`` или ``str()`` для объекта ``BeautifulSoup`` или объекта ``Tag``
+внутри::
 
  str(soup)
  # '<html><head></head><body><a href="http://example.com/">I linked to <i>example.com</i></a></body></html>'
@@ -2214,34 +2214,34 @@ within it::
  unicode(soup.a)
  # u'<a href="http://example.com/">I linked to <i>example.com</i></a>'
 
-The ``str()`` function returns a string encoded in UTF-8. See
-`Encodings`_ for other options.
+Функция ``str()`` возвращает строку, кодированную в UTF-8. Для получения более подробной информации см. 
+`Кодировки`_.
 
-You can also call ``encode()`` to get a bytestring, and ``decode()``
-to get Unicode.
+Вы также можете вызвать ``encode()`` для получения байтовой строки, и ``decode()``,
+чтобы получить Unicode.
 
 .. _output_formatters:
 
-Output formatters
+Средства форматирования вывода
 -----------------
 
-If you give Beautiful Soup a document that contains HTML entities like
-"&lquot;", they'll be converted to Unicode characters::
+Если вы дадите Beautiful Soup документ, который содержит HTML-сущности, такие как
+"&lquot;", они будут преобразованы в символы Unicode::
 
  soup = BeautifulSoup("&ldquo;Dammit!&rdquo; he said.")
  unicode(soup)
  # u'<html><head></head><body>\u201cDammit!\u201d he said.</body></html>'
 
-If you then convert the document to a string, the Unicode characters
-will be encoded as UTF-8. You won't get the HTML entities back::
+Если затем преобразовать документ в строку, символы Unicode
+будет кодироваться как UTF-8. Вы не получите обратно HTML-сущности::
 
  str(soup)
  # '<html><head></head><body>\xe2\x80\x9cDammit!\xe2\x80\x9d he said.</body></html>'
 
-By default, the only characters that are escaped upon output are bare
-ampersands and angle brackets. These get turned into "&amp;", "&lt;",
-and "&gt;", so that Beautiful Soup doesn't inadvertently generate
-invalid HTML or XML::
+По умолчанию единственные символы, которые экранируются при выводе - это чистые
+амперсанды и угловые скобки. Они превращаются в «&», «<»
+и ">", чтобы Beautiful Soup случайно не сгенерировал
+невалидный HTML или XML::
 
  soup = BeautifulSoup("<p>The law firm of Dewey, Cheatem, & Howe</p>")
  soup.p
@@ -2251,13 +2251,13 @@ invalid HTML or XML::
  soup.a
  # <a href="http://example.com/?foo=val1&amp;bar=val2">A link</a>
 
-You can change this behavior by providing a value for the
-``formatter`` argument to ``prettify()``, ``encode()``, or
-``decode()``. Beautiful Soup recognizes five possible values for
+Вы можете изменить это поведение, указав для
+аргумента ``formatter`` одно из значений: ``prettify()``, ``encode()`` или
+``decode()``. Beautiful Soup распознает пять возможных значений
 ``formatter``.
 
-The default is ``formatter="minimal"``. Strings will only be processed
-enough to ensure that Beautiful Soup generates valid HTML/XML::
+Значение по умолчанию - ``formatter="minimal"``. Строки будут обрабатываться
+ровно настолько, чтобы Beautiful Soup генерировал валидный HTML / XML::
 
  french = "<p>Il a dit &lt;&lt;Sacr&eacute; bleu!&gt;&gt;</p>"
  soup = BeautifulSoup(french)
@@ -2270,8 +2270,8 @@ enough to ensure that Beautiful Soup generates valid HTML/XML::
  #  </body>
  # </html>
 
-If you pass in ``formatter="html"``, Beautiful Soup will convert
-Unicode characters to HTML entities whenever possible::
+Если вы передадите ``formatter = "html"``, Beautiful Soup преобразует
+символы Unicode в HTML-сущности, когда это возможно::
 
  print(soup.prettify(formatter="html"))
  # <html>
@@ -2282,9 +2282,9 @@ Unicode characters to HTML entities whenever possible::
  #  </body>
  # </html>
 
-If you pass in ``formatter="html5"``, it's the same as
-``formatter="html5"``, but Beautiful Soup will
-omit the closing slash in HTML void tags like "br"::
+Если вы передаете ``formatter="html5"``, это то же самое, что
+``formatter="html"``, только Beautiful Soup будет
+пропускать закрывающую косую черту в пустых тегах HTML, таких как "br"::
 
  soup = BeautifulSoup("<br>")
  
@@ -2294,9 +2294,9 @@ omit the closing slash in HTML void tags like "br"::
  print(soup.encode(formatter="html5"))
  # <html><body><br></body></html>
  
-If you pass in ``formatter=None``, Beautiful Soup will not modify
-strings at all on output. This is the fastest option, but it may lead
-to Beautiful Soup generating invalid HTML/XML, as in these examples::
+Если вы передадите ``formatter=None``, Beautiful Soup вообще не будет менять
+строки на выходе. Это самый быстрый вариант, но он может привести
+к тому, что Beautiful Soup будет генерировать невалидный HTML / XML::
 
  print(soup.prettify(formatter=None))
  # <html>
@@ -2311,10 +2311,10 @@ to Beautiful Soup generating invalid HTML/XML, as in these examples::
  print(link_soup.a.encode(formatter=None))
  # <a href="http://example.com/?foo=val1&bar=val2">A link</a>
 
-If you need more sophisticated control over your output, you can
-use Beautiful Soup's ``Formatter`` class. Here's a formatter that
-converts strings to uppercase, whether they occur in a text node or in an
-attribute value::
+Если вам нужен более сложный контроль над выводом, вы можете
+использовать класс ``Formatter`` из Beautiful Soup. Вот средство форматирования, которое
+преобразует строки в верхний регистр, независимо от того, находятся ли они в текстовом узле или в
+значении атрибута::
 
  from bs4.formatter import HTMLFormatter
  def uppercase(str):
@@ -2335,18 +2335,18 @@ attribute value::
  #  A LINK
  # </a>
 
-Subclassing ``HTMLFormatter`` or ``XMLFormatter`` will give you even
-more control over the output. For example, Beautiful Soup sorts the
-attributes in every tag by default::
+Подклассы ``HTMLFormatter`` или ``XMLFormatter`` дают еще
+больший контроль над выводом. Например, Beautiful Soup сортирует
+атрибуты в каждом теге по умолчанию::
 
  attr_soup = BeautifulSoup(b'<p z="1" m="2" a="3"></p>')
  print(attr_soup.p.encode())
  # <p a="3" m="2" z="1"></p>
 
-To turn this off, you can subclass the ``Formatter.attributes()``
-method, which controls which attributes are output and in what
-order. This implementation also filters out the attribute called "m"
-whenever it appears::
+Чтобы выключить сортировку по умолчанию, вы можете создать подкласс  на основе метода ``Formatter.attributes()``,
+который контролирует, какие атрибуты выводятся и в каком
+порядке. Эта реализация также отфильтровывает атрибут с именем "m",
+где бы он ни появился::
 
  class UnsortedAttributes(HTMLFormatter):
      def attributes(self, tag):
@@ -2357,12 +2357,12 @@ whenever it appears::
  print(attr_soup.p.encode(formatter=UnsortedAttributes())) 
  # <p z="1" a="3"></p>
 
-One last caveat: if you create a ``CData`` object, the text inside
-that object is always presented `exactly as it appears, with no
-formatting`. Beautiful Soup will call your entity substitution
-function, just in case you've written a custom function that counts
-all the strings in the document or something, but it will ignore the
-return value::
+Последнее предостережение: если вы создаете объект ``CData``, текст внутри
+этого объекта всегда представлен `как есть, без какого-либо
+форматирования`. Beautiful Soup вызовет вашу функцию для замены сущностей,
+на тот случай, если вы написали функцию, которая подсчитывает
+все строки в документе или что-то еще, но он будет игнорировать
+возвращаемое значение::
 
  from bs4.element import CData
  soup = BeautifulSoup("<a></a>")
@@ -2376,9 +2376,9 @@ return value::
 ``get_text()``
 --------------
 
-If you only want the text part of a document or tag, you can use the
-``get_text()`` method. It returns all the text in a document or
-beneath a tag, as a single Unicode string::
+Если вам нужна только текстовая часть документа или тега, вы можете использовать
+метод ``get_text()``. Он возвращает весь текст документа или
+тега в виде единственной строки Unicode::
 
   markup = '<a href="http://example.com/">\nI linked to <i>example.com</i>\n</a>'
   soup = BeautifulSoup(markup)
@@ -2388,132 +2388,132 @@ beneath a tag, as a single Unicode string::
   soup.i.get_text()
   u'example.com'
 
-You can specify a string to be used to join the bits of text
-together::
+Вы можете указать строку, которая будет использоваться для объединения текстовых фрагментов
+в единую строку::
 
  # soup.get_text("|")
  u'\nI linked to |example.com|\n'
 
-You can tell Beautiful Soup to strip whitespace from the beginning and
-end of each bit of text::
+Вы можете сказать Beautiful Soup удалять пробелы в начале и
+конце каждого текстового фрагмента::
 
  # soup.get_text("|", strip=True)
  u'I linked to|example.com'
 
-But at that point you might want to use the :ref:`.stripped_strings <string-generators>`
-generator instead, and process the text yourself::
+Но в этом случае вы можете предпочесть использовать генератор :ref:`.stripped_strings <string-generators>`
+и затем обработать текст самостоятельно::
 
  [text for text in soup.stripped_strings]
  # [u'I linked to', u'example.com']
 
-Specifying the parser to use
+Указание парсера
 ============================
 
-If you just need to parse some HTML, you can dump the markup into the
-``BeautifulSoup`` constructor, and it'll probably be fine. Beautiful
-Soup will pick a parser for you and parse the data. But there are a
-few additional arguments you can pass in to the constructor to change
-which parser is used.
+Если вам нужно просто разобрать HTML, вы можете скинуть разметку в
+конструктор ``BeautifulSoup``, и, скорее всего, все будет в порядке. Beautiful
+Soup подберет для вас парсер и проанализирует данные. Но есть
+несколько дополнительных аргументов, которые вы можете передать конструктору, чтобы изменить
+используемый парсер.
 
-The first argument to the ``BeautifulSoup`` constructor is a string or
-an open filehandle--the markup you want parsed. The second argument is
-`how` you'd like the markup parsed.
+Первым аргументом конструктора ``BeautifulSou`` является строка или
+открытый дескриптор файла - сама разметка, которую вы хотите разобрать. Второй аргумент - это
+`как` вы хотите, чтобы разметка была разобрана.
 
-If you don't specify anything, you'll get the best HTML parser that's
-installed. Beautiful Soup ranks lxml's parser as being the best, then
-html5lib's, then Python's built-in parser. You can override this by
-specifying one of the following:
+Если вы ничего не укажете, будет использвоаться лучший HTML-парсер из тех,
+которые установлены. Beautiful Soup оценивает парсер lxml как лучший, за ним идет
+html5lib, затем встроенный парсер Python. Вы можете переопределить используемый парсер,
+указав что-то из следующего:
 
-* What type of markup you want to parse. Currently supported are
-  "html", "xml", and "html5".
+* Какой тип разметки вы хотите разобрать. В данный момент поддерживаются:
+  "html", "xml" и "html5".
 
-* The name of the parser library you want to use. Currently supported
-  options are "lxml", "html5lib", and "html.parser" (Python's
-  built-in HTML parser).
+* Имя библиотеки парсера, которую вы хотите использовать. В данный момент поддерживаются:
+  варианты "lxml", "html5lib" и "html.parser" (встроенный в Python
+  парсер HTML).
 
-The section `Installing a parser`_ contrasts the supported parsers.
+В разделе `Установка парсера`_ сравниваются поддерживаемые парсеры.
 
-If you don't have an appropriate parser installed, Beautiful Soup will
-ignore your request and pick a different parser. Right now, the only
-supported XML parser is lxml. If you don't have lxml installed, asking
-for an XML parser won't give you one, and asking for "lxml" won't work
-either.
+Если у вас не установлен соответствующий парсер, Beautiful Soup
+проигнорирует ваш запрос и выберет другой парсер. На текущий момент единственный
+поддерживаемый парсер XML - это lxml. Если у вас не установлен lxml, запрос на
+парсер XML ничего не даст, и запрос "lxml" тоже
+не сработает.
 
-Differences between parsers
+Различия между парсерами
 ---------------------------
 
-Beautiful Soup presents the same interface to a number of different
-parsers, but each parser is different. Different parsers will create
-different parse trees from the same document. The biggest differences
-are between the HTML parsers and the XML parsers. Here's a short
-document, parsed as HTML::
+Beautiful Soup представляет один интерфейс для разных
+парсеров, но парсеры неодинаковы. Разные парсеры создадут
+различные деревья разбора из одного и того же документа. Самые большие различия будут
+между парсерами HTML и парсерами XML. Вот короткий
+документ, разобранный как HTML::
 
  BeautifulSoup("<a><b /></a>")
  # <html><head></head><body><a><b></b></a></body></html>
 
-Since an empty <b /> tag is not valid HTML, the parser turns it into a
-<b></b> tag pair.
+Поскольку пустой тег <b /> не является валидным кодом HTML, парсер превращает его в
+пару тегов <b></b>.
 
-Here's the same document parsed as XML (running this requires that you
-have lxml installed). Note that the empty <b /> tag is left alone, and
-that the document is given an XML declaration instead of being put
-into an <html> tag.::
+Вот тот же документ, который разобран как XML (для его запуска нужно, чтобы был
+установлен lxml). Обратите внимание, что пустой тег <b /> остается, и
+что в документ добавляется объявление XML вместо
+тега <html>::
 
  BeautifulSoup("<a><b /></a>", "xml")
  # <?xml version="1.0" encoding="utf-8"?>
  # <a><b/></a>
 
-There are also differences between HTML parsers. If you give Beautiful
-Soup a perfectly-formed HTML document, these differences won't
-matter. One parser will be faster than another, but they'll all give
-you a data structure that looks exactly like the original HTML
-document.
+Есть также различия между парсерами HTML. Если вы даете Beautiful
+Soup идеально оформленный документ HTML, эти различия не будут
+иметь значения. Один парсер будет быстрее другого, но все они будут давать
+структуру данных, которая выглядит точно так же, как оригинальный
+документ HTML.
 
-But if the document is not perfectly-formed, different parsers will
-give different results. Here's a short, invalid document parsed using
-lxml's HTML parser. Note that the dangling </p> tag is simply
-ignored::
+Но если документ оформлен неидеально, различные парсеры
+дадут разные результаты. Вот короткий невалидный документ, разобранный с помощью
+HTML-парсера lxml. Обратите внимание, что висячий тег </p> просто
+игнорируется::
 
  BeautifulSoup("<a></p>", "lxml")
  # <html><body><a></a></body></html>
 
-Here's the same document parsed using html5lib::
+Вот тот же документ, разобранный с помощью html5lib::
 
  BeautifulSoup("<a></p>", "html5lib")
  # <html><head></head><body><a><p></p></a></body></html>
 
-Instead of ignoring the dangling </p> tag, html5lib pairs it with an
-opening <p> tag. This parser also adds an empty <head> tag to the
-document.
+Вместо того, чтобы игнорировать висячий тег </p>, html5lib добавляет
+открывающй тег <p>. Этот парсер также добавляет пустой тег <head> в
+документ.
 
-Here's the same document parsed with Python's built-in HTML
-parser::
+Вот тот же документ, разобранный с помощью встроенного в Python
+парсера HTML::
 
  BeautifulSoup("<a></p>", "html.parser")
  # <a></a>
 
-Like html5lib, this parser ignores the closing </p> tag. Unlike
-html5lib, this parser makes no attempt to create a well-formed HTML
-document by adding a <body> tag. Unlike lxml, it doesn't even bother
-to add an <html> tag.
+Как и html5lib, этот парсер игнорирует закрывающий тег </p>. В отличие от
+html5lib, этот парсер не делает попытки создать правильно оформленный HTML-
+документ, добавив тег <body>. В отличие от lxml, он даже не
+добавляет тег <html>.
 
-Since the document "<a></p>" is invalid, none of these techniques is
-the "correct" way to handle it. The html5lib parser uses techniques
-that are part of the HTML5 standard, so it has the best claim on being
-the "correct" way, but all three techniques are legitimate.
+Поскольку документ "<a></p>" невалиден, ни один из этих способов
+нельзя назвать "правильным". Парсер html5lib использует способы,
+которые являются частью стандарта HTML5, поэтому он может претендовать на то, что его подход
+самый "правильный", но правомерно использовать любой из трех методов.
 
-Differences between parsers can affect your script. If you're planning
-on distributing your script to other people, or running it on multiple
-machines, you should specify a parser in the ``BeautifulSoup``
-constructor. That will reduce the chances that your users parse a
-document differently from the way you parse it.
+Различия между парсерами могут повлиять на ваш скрипт. Если вы планируете
+распространять ваш скрипт или запускать его на нескольких
+машинах, вам нужно указать парсер в
+конструкторе ``BeautifulSoup``. Это уменьшит вероятность того, что ваши пользователи при разборе
+документа получат результат, отличный от вашего.
    
-Encodings
+Кодировки
 =========
 
-Any HTML or XML document is written in a specific encoding like ASCII
-or UTF-8.  But when you load that document into Beautiful Soup, you'll
-discover it's been converted to Unicode::
+Любой документ HTML или XML написан в определенной кодировке, такой как ASCII
+или UTF-8.  Но когда вы загрузите этот документ в Beautiful Soup, вы
+обнаружите, что он был преобразован в Unicode::
 
  markup = "<h1>Sacr\xc3\xa9 bleu!</h1>"
  soup = BeautifulSoup(markup)
@@ -2522,23 +2522,23 @@ discover it's been converted to Unicode::
  soup.h1.string
  # u'Sacr\xe9 bleu!'
 
-It's not magic. (That sure would be nice.) Beautiful Soup uses a
-sub-library called `Unicode, Dammit`_ to detect a document's encoding
-and convert it to Unicode. The autodetected encoding is available as
-the ``.original_encoding`` attribute of the ``BeautifulSoup`` object::
+Это не волшебство. (Хотя это было бы здорово, конечно). Beautiful Soup использует
+подбиблиотеку под названием `Unicode, Dammit`_ для определения кодировки документа
+и преобразования ее в Unicode. Кодировка, которая была автоматически определена, содержится в значении
+атрибута ``.original_encoding`` объекта ``BeautifulSoup``::
 
  soup.original_encoding
  'utf-8'
 
-Unicode, Dammit guesses correctly most of the time, but sometimes it
-makes mistakes. Sometimes it guesses correctly, but only after a
-byte-by-byte search of the document that takes a very long time. If
-you happen to know a document's encoding ahead of time, you can avoid
-mistakes and delays by passing it to the ``BeautifulSoup`` constructor
-as ``from_encoding``.
+Unicode, Dammit чаще всего угадывает правильно, но иногда
+делает ошибки. Иногда он угадывает правильно только после
+побайтового поиска по документу, что занимает очень много времени. Если
+вы вдруг уже знаете кодировку документа, вы можете избежать
+ошибок и задержек, передав кодировку конструктору ``BeautifulSoup``
+как аргумент `` from_encoding``.
 
-Here's a document written in ISO-8859-8. The document is so short that
-Unicode, Dammit can't get a lock on it, and misidentifies it as
+Вот документ, написанный на ISO-8859-8. Документ настолько короткий, что
+Unicode, Dammit не может разобраться и неправильно идентифицирует кодировку как
 ISO-8859-7::
 
  markup = b"<h1>\xed\xe5\xec\xf9</h1>"
@@ -2548,7 +2548,7 @@ ISO-8859-7::
  soup.original_encoding
  'ISO-8859-7'
 
-We can fix this by passing in the correct ``from_encoding``::
+Мы можем все исправить, передав правильный ``from_encoding``::
 
  soup = BeautifulSoup(markup, from_encoding="iso-8859-8")
  soup.h1
@@ -2556,9 +2556,9 @@ We can fix this by passing in the correct ``from_encoding``::
  soup.original_encoding
  'iso8859-8'
 
-If you don't know what the correct encoding is, but you know that
-Unicode, Dammit is guessing wrong, you can pass the wrong guesses in
-as ``exclude_encodings``::
+Если вы не знаете правильную кодировку, но вы видите, что
+Unicode, Dammit определяет кодировку неправильно, вы можете передать ошибочные варианты в
+``exclude_encodings``::
 
  soup = BeautifulSoup(markup, exclude_encodings=["ISO-8859-7"])
  soup.h1
@@ -2566,21 +2566,21 @@ as ``exclude_encodings``::
  soup.original_encoding
  'WINDOWS-1255'
 
-Windows-1255 isn't 100% correct, but that encoding is a compatible
-superset of ISO-8859-8, so it's close enough. (``exclude_encodings``
-is a new feature in Beautiful Soup 4.4.0.)
+Windows-1255 не на 100% подходит, но это совместимое
+надмножество ISO-8859-8, так что догадка почти верна. (``exclude_encodings``
+- это новая функция в Beautiful Soup 4.4.0.)
 
-In rare cases (usually when a UTF-8 document contains text written in
-a completely different encoding), the only way to get Unicode may be
-to replace some characters with the special Unicode character
-"REPLACEMENT CHARACTER" (U+FFFD, �). If Unicode, Dammit needs to do
-this, it will set the ``.contains_replacement_characters`` attribute
-to ``True`` on the ``UnicodeDammit`` or ``BeautifulSoup`` object. This
-lets you know that the Unicode representation is not an exact
-representation of the original--some data was lost. If a document
-contains �, but ``.contains_replacement_characters`` is ``False``,
-you'll know that the � was there originally (as it is in this
-paragraph) and doesn't stand in for missing data.
+В редких случаях (обычно, когда документ UTF-8 содержит текст в
+совершенно другая кодировка), единственным способом получить Unicode может оказаться
+замена некоторых символов специальным символом Unicode
+"REPLACEMENT CHARACTER" (U+FFFD, �). Если Unicode, Dammit приходится это сделать,
+он установит атрибут ``.contains_replacement_characters``
+в ``True`` на объекте ``UnicodeDammit`` или ``BeautifulSoup``. Это
+даст понять, что представление в виде Unicode не является точным
+представление оригинала, и что некоторые данные потерялись. Если документ
+содержит �, но ``.contains_replacement_characters`` равен ``False``,
+вы будете знать, что � был в тексте изначально (как в этом
+параграфе), а не служит заменой отсутствующим данным.
 
 Output encoding
 ---------------
