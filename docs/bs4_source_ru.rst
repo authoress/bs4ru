@@ -308,7 +308,7 @@ html5lib - встроенный в Python анализатор HTML просто
 
  soup = BeautifulSoup("<html>data</html>")
 
-Первым делом документ конвертируется в Unicode, а HTML-сущности
+Первым делом документ конвертируется в Unicode, а HTML-мнемоники
 конвертируются в символы Unicode::
 
  BeautifulSoup("Sacré bleu!")
@@ -2225,7 +2225,7 @@ Beautiful Soup API. И если CSS селекторы - это все, что �
 Средства форматирования вывода
 -----------------
 
-Если вы дадите Beautiful Soup документ, который содержит HTML-сущности, такие как
+Если вы дадите Beautiful Soup документ, который содержит HTML-мнемоники, такие как
 "&lquot;", они будут преобразованы в символы Unicode::
 
  soup = BeautifulSoup("&ldquo;Dammit!&rdquo; he said.")
@@ -2233,7 +2233,7 @@ Beautiful Soup API. И если CSS селекторы - это все, что �
  # u'<html><head></head><body>\u201cDammit!\u201d he said.</body></html>'
 
 Если затем преобразовать документ в строку, символы Unicode
-будет кодироваться как UTF-8. Вы не получите обратно HTML-сущности::
+будет кодироваться как UTF-8. Вы не получите обратно HTML-мнемоники::
 
  str(soup)
  # '<html><head></head><body>\xe2\x80\x9cDammit!\xe2\x80\x9d he said.</body></html>'
@@ -2271,7 +2271,7 @@ Beautiful Soup API. И если CSS селекторы - это все, что �
  # </html>
 
 Если вы передадите ``formatter = "html"``, Beautiful Soup преобразует
-символы Unicode в HTML-сущности, когда это возможно::
+символы Unicode в HTML-мнемоники, когда это возможно::
 
  print(soup.prettify(formatter="html"))
  # <html>
@@ -2582,12 +2582,12 @@ Windows-1255 не на 100% подходит, но это совместимое
 вы будете знать, что � был в тексте изначально (как в этом
 параграфе), а не служит заменой отсутствующим данным.
 
-Output encoding
+Кодировка вывода
 ---------------
 
-When you write out a document from Beautiful Soup, you get a UTF-8
-document, even if the document wasn't in UTF-8 to begin with. Here's a
-document written in the Latin-1 encoding::
+Когда вы пишете документ из Beautiful Soup, вы получаете документ в UTF-8,
+даже если он изначально не был в UTF-8. Вот
+документ в кодировке Latin-1::
 
  markup = b'''
   <html>
@@ -2613,10 +2613,10 @@ document written in the Latin-1 encoding::
  #  </body>
  # </html>
 
-Note that the <meta> tag has been rewritten to reflect the fact that
-the document is now in UTF-8.
+Обратите внимание, что тег <meta> был переписан, чтобы отразить тот факт, что
+теперь документ кодируется в UTF-8.
 
-If you don't want UTF-8, you can pass an encoding into ``prettify()``::
+Если вы не хотите кодировку UTF-8, вы можете передать другую в ``prettify()``::
 
  print(soup.prettify("latin-1"))
  # <html>
@@ -2624,8 +2624,8 @@ If you don't want UTF-8, you can pass an encoding into ``prettify()``::
  #   <meta content="text/html; charset=latin-1" http-equiv="Content-type" />
  # ...
 
-You can also call encode() on the ``BeautifulSoup`` object, or any
-element in the soup, just as if it were a Python string::
+Вы также можете вызвать encode() для объекта ``BeautifulSoup`` или любого
+элемента в супе, как если бы это была строка Python::
 
  soup.p.encode("latin-1")
  # '<p>Sacr\xe9 bleu!</p>'
@@ -2633,17 +2633,17 @@ element in the soup, just as if it were a Python string::
  soup.p.encode("utf-8")
  # '<p>Sacr\xc3\xa9 bleu!</p>'
 
-Any characters that can't be represented in your chosen encoding will
-be converted into numeric XML entity references. Here's a document
-that includes the Unicode character SNOWMAN::
+Любые символы, которые не могут быть представлены в выбранной вами кодировке, будут
+быть преобразованы в числовые коды мнемоник XML. Вот документ,
+который включает в себя Unicode-символ SNOWMAN::
 
  markup = u"<b>\N{SNOWMAN}</b>"
  snowman_soup = BeautifulSoup(markup)
  tag = snowman_soup.b
 
-The SNOWMAN character can be part of a UTF-8 document (it looks like
-☃), but there's no representation for that character in ISO-Latin-1 or
-ASCII, so it's converted into "&#9731" for those encodings::
+Символ SNOWMAN может быть частью документа UTF-8 (он выглядит
+так: ☃), но в ISO-Latin-1 или
+ASCII нет представления для этого символа, поэтому для этих кодировок он конвертируется в "☃":
 
  print(tag.encode("utf-8"))
  # <b>☃</b>
