@@ -2643,7 +2643,7 @@ Windows-1255 не на 100% подходит, но это совместимое
 
 Символ SNOWMAN может быть частью документа UTF-8 (он выглядит
 так: ☃), но в ISO-Latin-1 или
-ASCII нет представления для этого символа, поэтому для этих кодировок он конвертируется в "☃":
+ASCII нет представления для этого символа, поэтому для этих кодировок он конвертируется в "&#9731;":
 
  print(tag.encode("utf-8"))
  # <b>☃</b>
@@ -2657,9 +2657,9 @@ ASCII нет представления для этого символа, поэ
 Unicode, Dammit
 ---------------
 
-You can use Unicode, Dammit without using Beautiful Soup. It's useful
-whenever you have data in an unknown encoding and you just want it to
-become Unicode::
+Вы можете использовать Unicode, Dammit без Beautiful Soup. Он полезенв тех случаях.
+когда у вас есть данные в неизвестной кодировке, и вы просто хотите, чтобы они
+преобразовали в Unicode::
 
  from bs4 import UnicodeDammit
  dammit = UnicodeDammit("Sacr\xc3\xa9 bleu!")
@@ -2668,11 +2668,11 @@ become Unicode::
  dammit.original_encoding
  # 'utf-8'
 
-Unicode, Dammit's guesses will get a lot more accurate if you install
-the ``chardet`` or ``cchardet`` Python libraries. The more data you
-give Unicode, Dammit, the more accurately it will guess. If you have
-your own suspicions as to what the encoding might be, you can pass
-them in as a list::
+Догадки Unicode, Dammit станут намного точнее, если вы установите
+библиотеки Python ``chardet`` или ``cchardet``. Чем больше данных вы
+даете Unicode, Dammit, тем точнее он определит кодировку. Если у вас есть
+собственные подозрения относительно возможных кодировок, вы можете передать
+их в виде списка::
 
  dammit = UnicodeDammit("Sacr\xe9 bleu!", ["latin-1", "iso-8859-1"])
  print(dammit.unicode_markup)
@@ -2680,8 +2680,8 @@ them in as a list::
  dammit.original_encoding
  # 'latin-1'
 
-Unicode, Dammit has two special features that Beautiful Soup doesn't
-use.
+В Unicode, Dammit есть две специальные функции, которые Beautiful Soup не
+использует.
 
 Smart quotes
 ^^^^^^^^^^^^
