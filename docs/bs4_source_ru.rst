@@ -311,7 +311,7 @@ html5lib - встроенный в Python анализатор HTML просто
 Первым делом документ конвертируется в Unicode, а HTML-мнемоники
 конвертируются в символы Unicode::
 
- BeautifulSoup("Sacré bleu!")
+ BeautifulSoup("Sacr&eacute; bleu!")
  <html><head></head><body>Sacré bleu!</body></html>
 
 Затем Beautiful Soup анализирует документ, используя лучший из доступных
@@ -636,7 +636,7 @@ CDATA::
 
 Если вам нужно получить `все` теги <a> или что-нибудь более сложное,
 чем первый тег с определенным именем, вам нужно будет использовать один из
-методов, описанные в разделе `Поиск дерева`_, такие как `find_all()`::
+методов, описанные в разделе `Поиск по дереву`_, такие как `find_all()`::
 
  soup.find_all('a')
  # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
@@ -906,7 +906,7 @@ story". В некотором смысле эта строка также явл
 
 В реальных документах ``.next_sibling`` или ``.previous_sibling``
 тега обычно будет строкой, содержащей пробелы. Возвращаясь к
-отрывку из «Алисы»::
+фрагменту из «Алисы в стране чудес»::
 
  <a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>
  <a href="http://example.com/lacie" class="sister" id="link2">Lacie</a>
@@ -957,7 +957,7 @@ story". В некотором смысле эта строка также явл
 Проход вперёд и назад
 --------------------
 
-Взгляните на начало отрывка из «Алисы»::
+Взгляните на начало фрагмента из «Алисы в стране чудес»::
 
  <html><head><title>The Dormouse's story</title></head>
  <p class="title"><b>The Dormouse's story</b></p>
@@ -977,7 +977,7 @@ HTML-парсер берет эту строку символов и превр�
 что было разобрано непосредственно после него. Это могло бы быть тем же, что и
 ``.next_sibling``, но обычно результат резко отличается.
 
-Возьмём последний тег <a> в документе «три сестры». Его
+Возьмём последний тег <a> в фрагменте из «Алисы в стране чудес». Его
 ``.next_sibling`` является строкой: конец предложения, которое было
 прервано началом тега <a>::
 
@@ -1035,7 +1035,7 @@ Beautiful Soup определяет множество методов поиск
 методы принимают практически те же самые аргументы, поэтому я просто расскажу
 о них коротко.
 
-И опять, я буду использовать документ «три сестры» в качестве примера::
+И опять, я буду использовать фрагмент из «Алисы в стране чудес» в качестве примера::
 
  html_doc = """
  <html><head><title>The Dormouse's story</title></head>
@@ -1430,7 +1430,7 @@ Python. Использование ``class`` в качестве именова�
 работает так же, как ключевое слово LIMIT в SQL. Оно говорит Beautiful Soup
 прекратить собирать результаты после того, как их найдено определенное количество.
 
-В документе «три сестры» есть три ссылки, но следующий код
+В фрагменте из «Алисы в стране чудес» есть три ссылки, но следующий код
 находит только первые два::
 
  soup.find_all("a", limit=2)
@@ -1549,7 +1549,7 @@ Soup API, вы можете использовать сокращенную за
 дерево сверху вниз, просматривая теги и их потомков. ``find_parents()`` и ``find_parent()``
 делают наоборот: они идут `снизу вверх`, рассматривая
 родительские элементы тега или строки. Давайте испытаем их, начав со строки,
-погребенной глубоко в документе "три сестры"::
+погребенной глубоко в фрагменте из «Алисы в стране чудес»::
 
   a_string = soup.find(string="Lacie")
   a_string
@@ -2535,7 +2535,7 @@ Unicode, Dammit чаще всего угадывает правильно, но 
 побайтового поиска по документу, что занимает очень много времени. Если
 вы вдруг уже знаете кодировку документа, вы можете избежать
 ошибок и задержек, передав кодировку конструктору ``BeautifulSoup``
-как аргумент `` from_encoding``.
+как аргумент ``from_encoding``.
 
 Вот документ, написанный на ISO-8859-8. Документ настолько короткий, что
 Unicode, Dammit не может разобраться и неправильно идентифицирует кодировку как
@@ -2556,8 +2556,8 @@ ISO-8859-7::
  soup.original_encoding
  'iso8859-8'
 
-Если вы не знаете правильную кодировку, но вы видите, что
-Unicode, Dammit определяет кодировку неправильно, вы можете передать ошибочные варианты в
+Если вы не знаете правильную кодировку, но видите, что
+Unicode, Dammit определяет ее неправильно, вы можете передать ошибочные варианты в
 ``exclude_encodings``::
 
  soup = BeautifulSoup(markup, exclude_encodings=["ISO-8859-7"])
@@ -2571,11 +2571,11 @@ Windows-1255 не на 100% подходит, но это совместимое
 - это новая функция в Beautiful Soup 4.4.0.)
 
 В редких случаях (обычно, когда документ UTF-8 содержит текст в
-совершенно другая кодировка), единственным способом получить Unicode может оказаться
+совершенно другой кодировке), единственным способом получить Unicode может оказаться
 замена некоторых символов специальным символом Unicode
 "REPLACEMENT CHARACTER" (U+FFFD, �). Если Unicode, Dammit приходится это сделать,
 он установит атрибут ``.contains_replacement_characters``
-в ``True`` на объекте ``UnicodeDammit`` или ``BeautifulSoup``. Это
+в ``True`` для объектов ``UnicodeDammit`` или ``BeautifulSoup``. Это
 даст понять, что представление в виде Unicode не является точным
 представление оригинала, и что некоторые данные потерялись. Если документ
 содержит �, но ``.contains_replacement_characters`` равен ``False``,
@@ -2634,7 +2634,7 @@ Windows-1255 не на 100% подходит, но это совместимое
  # '<p>Sacr\xc3\xa9 bleu!</p>'
 
 Любые символы, которые не могут быть представлены в выбранной вами кодировке, будут
-быть преобразованы в числовые коды мнемоник XML. Вот документ,
+преобразованы в числовые коды мнемоник XML. Вот документ,
 который включает в себя Unicode-символ SNOWMAN::
 
  markup = u"<b>\N{SNOWMAN}</b>"
@@ -2659,7 +2659,7 @@ Unicode, Dammit
 
 Вы можете использовать Unicode, Dammit без Beautiful Soup. Он полезенв тех случаях.
 когда у вас есть данные в неизвестной кодировке, и вы просто хотите, чтобы они
-преобразовали в Unicode::
+преобразовались в Unicode::
 
  from bs4 import UnicodeDammit
  dammit = UnicodeDammit("Sacr\xc3\xa9 bleu!")
@@ -2683,11 +2683,11 @@ Unicode, Dammit
 В Unicode, Dammit есть две специальные функции, которые Beautiful Soup не
 использует.
 
-Smart quotes
+Парные кавычки
 ^^^^^^^^^^^^
 
-You can use Unicode, Dammit to convert Microsoft smart quotes to HTML or XML
-entities::
+Вы можете использовать Unicode, Dammit, чтобы конвертировать парные кавычки (Microsoft smart quotes) в
+мнемоники HTML или XML::
 
  markup = b"<p>I just \x93love\x94 Microsoft Word\x92s smart quotes</p>"
 
@@ -2697,35 +2697,35 @@ entities::
  UnicodeDammit(markup, ["windows-1252"], smart_quotes_to="xml").unicode_markup
  # u'<p>I just &#x201C;love&#x201D; Microsoft Word&#x2019;s smart quotes</p>'
 
-You can also convert Microsoft smart quotes to ASCII quotes::
+Вы также можете конвертировать парные кавычки в обычные кавычки ASCII::
 
  UnicodeDammit(markup, ["windows-1252"], smart_quotes_to="ascii").unicode_markup
  # u'<p>I just "love" Microsoft Word\'s smart quotes</p>'
 
-Hopefully you'll find this feature useful, but Beautiful Soup doesn't
-use it. Beautiful Soup prefers the default behavior, which is to
-convert Microsoft smart quotes to Unicode characters along with
-everything else::
+Надеюсь, вы найдете эту функцию полезной, но Beautiful Soup не
+использует ее. Beautiful Soup по умолчанию
+конвертирует парные кавычки в символы Unicode, как и
+все остальное::
 
  UnicodeDammit(markup, ["windows-1252"]).unicode_markup
  # u'<p>I just \u201clove\u201d Microsoft Word\u2019s smart quotes</p>'
 
-Inconsistent encodings
+Несогласованные кодировки
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Sometimes a document is mostly in UTF-8, but contains Windows-1252
-characters such as (again) Microsoft smart quotes. This can happen
-when a website includes data from multiple sources. You can use
-``UnicodeDammit.detwingle()`` to turn such a document into pure
-UTF-8. Here's a simple example::
+Иногда документ кодирован в основном в UTF-8, но содержит символы Windows-1252,
+такие как, опять-таки, парные кавычки. Такое бывает,
+когда веб-сайт содержит данные из нескольких источников. Вы можете использовать
+``UnicodeDammit.detwingle()``, чтобы превратить такой документ в чистый
+UTF-8. Вот простой пример::
 
  snowmen = (u"\N{SNOWMAN}" * 3)
  quote = (u"\N{LEFT DOUBLE QUOTATION MARK}I like snowmen!\N{RIGHT DOUBLE QUOTATION MARK}")
  doc = snowmen.encode("utf8") + quote.encode("windows_1252")
 
-This document is a mess. The snowmen are in UTF-8 and the quotes are
-in Windows-1252. You can display the snowmen or the quotes, but not
-both::
+В этом документе бардак. Снеговики в UTF-8, а парные кавычки
+в Windows-1252. Можно отображать или снеговиков, или кавычки, но не
+то и другое одновременно::
 
  print(doc)
  # ☃☃☃�I like snowmen!�
@@ -2733,37 +2733,37 @@ both::
  print(doc.decode("windows-1252"))
  # â˜ƒâ˜ƒâ˜ƒ“I like snowmen!”
 
-Decoding the document as UTF-8 raises a ``UnicodeDecodeError``, and
-decoding it as Windows-1252 gives you gibberish. Fortunately,
-``UnicodeDammit.detwingle()`` will convert the string to pure UTF-8,
-allowing you to decode it to Unicode and display the snowmen and quote
-marks simultaneously::
+Декодирование документа как UTF-8 вызывает ``UnicodeDecodeError``, а
+декодирование его как Windows-1252 выдаст тарабарщину. К счастью,
+``UnicodeDammit.detwingle()`` преобразует строку в чистый UTF-8,
+позволяя затем декодировать его в Unicode и отображать снеговиков и кавычки
+одновременно::
 
  new_doc = UnicodeDammit.detwingle(doc)
  print(new_doc.decode("utf8"))
  # ☃☃☃“I like snowmen!”
 
-``UnicodeDammit.detwingle()`` only knows how to handle Windows-1252
-embedded in UTF-8 (or vice versa, I suppose), but this is the most
-common case.
+``UnicodeDammit.detwingle()`` знает только, как обрабатывать Windows-1252,
+встроенный в UTF-8 (и наоборот, мне кажется), но это наиболее
+общий случай.
 
-Note that you must know to call ``UnicodeDammit.detwingle()`` on your
-data before passing it into ``BeautifulSoup`` or the ``UnicodeDammit``
-constructor. Beautiful Soup assumes that a document has a single
-encoding, whatever it might be. If you pass it a document that
-contains both UTF-8 and Windows-1252, it's likely to think the whole
-document is Windows-1252, and the document will come out looking like
+Обратите внимание, что нужно вызывать ``UnicodeDammit.detwingle()`` для ваших данных
+перед передачей в конструктор ``BeautifulSoup`` или
+``UnicodeDammit``. Beautiful Soup предполагает, что документ имеет единую
+кодировку, какой бы она ни была. Если вы передадите ему документ, который
+содержит как UTF-8, так и Windows-1252, скорее всего, он решит, что весь
+документ кодируется в Windows-1252, и это будет выглядеть как
 ``â˜ƒâ˜ƒâ˜ƒ“I like snowmen!”``.
 
-``UnicodeDammit.detwingle()`` is new in Beautiful Soup 4.1.0.
+``UnicodeDammit.detwingle()`` - это новое в Beautiful Soup 4.1.0.
 
-Line numbers
+Нумерация строк
 ============
 
-The ``html.parser` and ``html5lib`` parsers can keep track of where in
-the original document each Tag was found. You can access this
-information as ``Tag.sourceline`` (line number) and ``Tag.sourcepos``
-(position of the start tag within a line)::
+Парсеры ``html.parser`` и ``html5lib`` могут отслеживать, где в
+исходном документе был найден каждый тег. Вы можете получить доступ к этой
+информации через ``Tag.sourceline`` (номер строки) и ``Tag.sourcepos``
+(позиция начального тега в строке)::
 
    markup = "<p\n>Paragraph 1</p>\n    <p>Paragraph 2</p>"
    soup = BeautifulSoup(markup, 'html.parser')
@@ -2772,10 +2772,10 @@ information as ``Tag.sourceline`` (line number) and ``Tag.sourcepos``
    # (1, 0, u'Paragraph 1')
    # (2, 3, u'Paragraph 2')
 
-Note that the two parsers mean slightly different things by
-``sourceline`` and ``sourcepos``. For html.parser, these numbers
-represent the position of the initial less-than sign. For html5lib,
-these numbers represent the position of the final greater-than sign::
+Обратите внимание, что два парсера понимают
+``sourceline`` и ``sourcepos`` немного по-разному. Для html.parser эти числа
+представляет позицию начального знака "<". Для html5lib
+эти числа представляют позицию конечного знака ">"::
    
    soup = BeautifulSoup(markup, 'html5lib')
    for tag in soup.find_all('p'):
@@ -2783,24 +2783,24 @@ these numbers represent the position of the final greater-than sign::
    # (2, 1, u'Paragraph 1')
    # (3, 7, u'Paragraph 2')
 
-You can shut off this feature by passing ``store_line_numbers=False`
-into the ``BeautifulSoup`` constructor::
+Вы можете отключить эту функцию, передав ``store_line_numbers = False``
+в конструктор ``BeautifulSoup``::
 
    markup = "<p\n>Paragraph 1</p>\n    <p>Paragraph 2</p>"
    soup = BeautifulSoup(markup, 'html.parser', store_line_numbers=False)
    soup.p.sourceline
    # None
   
-This feature is new in 4.8.1, and the parsers based on lxml don't
-support it.
+Эта функция является новой в 4.8.1, и парсеры, основанные на lxml, не
+поддерживают ее.
 
-Comparing objects for equality
+Проверка объектов на равенство
 ==============================
 
-Beautiful Soup says that two ``NavigableString`` or ``Tag`` objects
-are equal when they represent the same HTML or XML markup. In this
-example, the two <b> tags are treated as equal, even though they live
-in different parts of the object tree, because they both look like
+Beautiful Soup считает, что два объекта ``NavigableString`` или ``Tag``
+равны, если они представлены в одинаковой разметке HTML или XML. В этом
+примере два тега <b> рассматриваются как равные, даже если они находятся
+в разных частях дерева объекта, потому что они оба выглядят как
 "<b>pizza</b>"::
 
  markup = "<p>I want <b>pizza</b> and more <b>pizza</b>!</p>"
@@ -2812,16 +2812,16 @@ in different parts of the object tree, because they both look like
  print first_b.previous_element == second_b.previous_element
  # False
 
-If you want to see whether two variables refer to exactly the same
-object, use `is`::
+Если вы хотите выяснить, указывают ли две переменные на один и тот же
+объект, используйте `is`::
 
  print first_b is second_b
  # False
 
-Copying Beautiful Soup objects
+Копирование объектов Beautiful Soup
 ==============================
 
-You can use ``copy.copy()`` to create a copy of any ``Tag`` or
+Вы можете использовать ``copy.copy()`` для создания копии любого ``Tag`` или
 ``NavigableString``::
 
  import copy
@@ -2829,8 +2829,8 @@ You can use ``copy.copy()`` to create a copy of any ``Tag`` or
  print p_copy
  # <p>I want <b>pizza</b> and more <b>pizza</b>!</p>
 
-The copy is considered equal to the original, since it represents the
-same markup as the original, but it's not the same object::
+Копия считается равной оригиналу, так как у нее
+такая же разметка, что и у оригинала, но это другой объект::
 
  print soup.p == p_copy
  # True
@@ -2838,43 +2838,43 @@ same markup as the original, but it's not the same object::
  print soup.p is p_copy
  # False
 
-The only real difference is that the copy is completely detached from
-the original Beautiful Soup object tree, just as if ``extract()`` had
-been called on it::
+Единственная настоящая разница в том, что копия полностью отделена от
+исходного дерево объекта Beautiful Soup, как если бы в отношении нее вызвали
+метод  ``extract()``::
 
  print p_copy.parent
  # None
 
-This is because two different ``Tag`` objects can't occupy the same
-space at the same time.
+Это потому, что два разных объекта ``Tag`` не могут занимать одно и то же
+пространство в одно и то же время.
 
 
-Parsing only part of a document
+Разбор части документа
 ===============================
 
-Let's say you want to use Beautiful Soup look at a document's <a>
-tags. It's a waste of time and memory to parse the entire document and
-then go over it again looking for <a> tags. It would be much faster to
-ignore everything that wasn't an <a> tag in the first place. The
-``SoupStrainer`` class allows you to choose which parts of an incoming
-document are parsed. You just create a ``SoupStrainer`` and pass it in
-to the ``BeautifulSoup`` constructor as the ``parse_only`` argument.
+Допустим, вы хотите использовать Beautiful Soup, чтобы посмотреть на
+теги <a> в документе. Это бесполезная трата времени и памяти - разобирать весь документ и
+затем снова проходить по нему в поисках тегов <a>. Было бы намного быстрее
+изначательно игнорировать все, что не является тегом <a>. Класс
+``SoupStrainer`` позволяет выбрать, какие части входящего
+документ разбирать. Вы просто создаете ``SoupStrainer`` и передаете его в
+конструктор ``BeautifulSoup`` в качестве аргумента ``parse_only``.
 
-(Note that *this feature won't work if you're using the html5lib parser*.
-If you use html5lib, the whole document will be parsed, no
-matter what. This is because html5lib constantly rearranges the parse
-tree as it works, and if some part of the document didn't actually
-make it into the parse tree, it'll crash. To avoid confusion, in the
-examples below I'll be forcing Beautiful Soup to use Python's
-built-in parser.)
+(Обратите внимание, что *эта функция не будет работать, если вы используете парсер html5lib*.
+Если вы используете html5lib, будет разобран весь документ, независимо
+от обстоятельств. Это потому что html5lib постоянно переставляет части дерева разбора
+в процессе работы, и если какая-то часть документа не
+попала в дерево разбора, все рухнет. Чтобы избежать путаницы, в
+примерах ниже я принудительно использую встроенный в Python
+парсер HTML).
 
 ``SoupStrainer``
 ----------------
 
-The ``SoupStrainer`` class takes the same arguments as a typical
-method from `Searching the tree`_: :ref:`name <name>`, :ref:`attrs
-<attrs>`, :ref:`string <string>`, and :ref:`**kwargs <kwargs>`. Here are
-three ``SoupStrainer`` objects::
+Класс ``SoupStrainer`` принимает те же аргументы, что и типичный
+метод из раздела `Поиск по дереву`_: :ref:`name <name>`, :ref:`attrs
+<attrs>`, :ref:`string <string>` и :ref:`**kwargs <kwargs>`. Вот
+три объекта ``SoupStrainer``::
 
  from bs4 import SoupStrainer
 
@@ -2887,9 +2887,9 @@ three ``SoupStrainer`` objects::
 
  only_short_strings = SoupStrainer(string=is_short_string)
 
-I'm going to bring back the "three sisters" document one more time,
-and we'll see what the document looks like when it's parsed with these
-three ``SoupStrainer`` objects::
+Вернемся к фрагменту из «Алисы в стране чудес»
+и увидим, как выглядит документ, когда он разобран с этими
+тремя объектами ``SoupStrainer``::
 
  html_doc = """
  <html><head><title>The Dormouse's story</title></head>
@@ -2930,16 +2930,16 @@ three ``SoupStrainer`` objects::
  # ...
  #
 
-You can also pass a ``SoupStrainer`` into any of the methods covered
-in `Searching the tree`_. This probably isn't terribly useful, but I
-thought I'd mention it::
+Вы также можете передать ``SoupStrainer`` в любой из методов. описанных в разделе
+`Поиск по дереву`_. Может, это не безумно полезно, но я
+решил упомянуть::
 
  soup = BeautifulSoup(html_doc)
  soup.find_all(only_short_strings)
  # [u'\n\n', u'\n\n', u'Elsie', u',\n', u'Lacie', u' and\n', u'Tillie',
  #  u'\n\n', u'...', u'\n']
 
-Troubleshooting
+Устранение неисправностей
 ===============
 
 .. _diagnose:
@@ -2947,11 +2947,11 @@ Troubleshooting
 ``diagnose()``
 --------------
 
-If you're having trouble understanding what Beautiful Soup does to a
-document, pass the document into the ``diagnose()`` function. (New in
-Beautiful Soup 4.2.0.)  Beautiful Soup will print out a report showing
-you how different parsers handle the document, and tell you if you're
-missing a parser that Beautiful Soup could be using::
+Если у вас возникли проблемы с пониманием того, что Beautiful Soup делает с
+документом, передайте документ в функцию ``Diagnose()``. (Новое в
+Beautiful Soup 4.2.0).  Beautiful Soup выведет отчет, показывающий,
+как разные парсеры обрабатывают документ, и сообщит вам, если
+отсутствует парсер, который Beautiful Soup мог бы использовать::
 
  from bs4.diagnose import diagnose
  with open("bad.html") as fp:
@@ -2967,73 +2967,73 @@ missing a parser that Beautiful Soup could be using::
  # Here's what html.parser did with the document:
  # ...
 
-Just looking at the output of diagnose() may show you how to solve the
-problem. Even if not, you can paste the output of ``diagnose()`` when
-asking for help.
+Простой взгляд на вывод diagnose() может показать, как решить
+проблему. Если это и не поможет, вы можете скопировать вывод ``Diagnose()``, когда
+будете просить о помощи.
 
-Errors when parsing a document
+Ошибки при разборе документа
 ------------------------------
 
-There are two different kinds of parse errors. There are crashes,
-where you feed a document to Beautiful Soup and it raises an
-exception, usually an ``HTMLParser.HTMLParseError``. And there is
-unexpected behavior, where a Beautiful Soup parse tree looks a lot
-different than the document used to create it.
+Существует два вида ошибок разбора. Есть сбои,
+когда вы подаете документ в Beautiful Soup, и это поднимает
+исключение, обычно ``HTMLParser.HTMLParseError``. И есть
+неожиданное поведение, когда дерево разбора Beautiful Soup сильно
+отличается от документа, использованного для создания дерева.
 
-Almost none of these problems turn out to be problems with Beautiful
-Soup. This is not because Beautiful Soup is an amazingly well-written
-piece of software. It's because Beautiful Soup doesn't include any
-parsing code. Instead, it relies on external parsers. If one parser
-isn't working on a certain document, the best solution is to try a
-different parser. See `Installing a parser`_ for details and a parser
-comparison.
+Практически никогда источником этих проблемы не бывает Beautiful
+Soup. Это не потому, что Beautiful Soup так прекрасно
+написан Это потому, что Beautiful Soup не содержит
+кода, который бы разбирал документ. Beautiful Soup опирается на внешние парсеры. Если один парсер
+не подходит для разбора документа, лучшим решением будет попробовать
+другой парсер. В разделе `Установка парсера`_ вы найдете больше информации
+и таблицу сравнения парсеров.
 
-The most common parse errors are ``HTMLParser.HTMLParseError:
-malformed start tag`` and ``HTMLParser.HTMLParseError: bad end
-tag``. These are both generated by Python's built-in HTML parser
-library, and the solution is to :ref:`install lxml or
+Наиболее распространенные ошибки разбора - это ``HTMLParser.HTMLParseError:
+malformed start tag`` и ``HTMLParser.HTMLParseError: bad end
+tag``. Они оба генерируются встроенным в Python парсером HTML,
+и решением будет :ref:`установить lxml или
 html5lib. <parser-installation>`
 
-The most common type of unexpected behavior is that you can't find a
-tag that you know is in the document. You saw it going in, but
-``find_all()`` returns ``[]`` or ``find()`` returns ``None``. This is
-another common problem with Python's built-in HTML parser, which
-sometimes skips tags it doesn't understand.  Again, the solution is to
-:ref:`install lxml or html5lib. <parser-installation>`
+Наиболее распространенный тип неожиданного поведения - когда вы не можете найти
+тег, который точно есть в документе. Вы видели его на входе, но
+``find_all()`` возвращает ``[]``, или ``find()`` возвращает ``None``. Это
+еще одна распространенная проблема со встроенным в Python парсером HTML, который
+иногда пропускает теги, которые он не понимает.  Опять же, решение заключается в
+:ref:`установке lxml или html5lib <parser-installation>`.
 
-Version mismatch problems
+Проблемы несоответствия версий
 -------------------------
 
-* ``SyntaxError: Invalid syntax`` (on the line ``ROOT_TAG_NAME =
-  u'[document]'``): Caused by running the Python 2 version of
-  Beautiful Soup under Python 3, without converting the code.
+* ``SyntaxError: Invalid syntax`` (в строке ``ROOT_TAG_NAME =
+  u'[document]'``): Вызвано запуском версии Beautiful Soup на Python 2
+  под Python 3 без конвертации кода.
 
-* ``ImportError: No module named HTMLParser`` - Caused by running the
-  Python 2 version of Beautiful Soup under Python 3.
+* ``ImportError: No module named HTMLParser`` - Вызвано запуском
+  версия Beautiful Soup на Python 3 под Python 2.
 
-* ``ImportError: No module named html.parser`` - Caused by running the
-  Python 3 version of Beautiful Soup under Python 2.
+* ``ImportError: No module named html.parser`` - Вызвано запуском
+  версия Beautiful Soup на Python 2 под Python 3.
 
-* ``ImportError: No module named BeautifulSoup`` - Caused by running
-  Beautiful Soup 3 code on a system that doesn't have BS3
-  installed. Or, by writing Beautiful Soup 4 code without knowing that
-  the package name has changed to ``bs4``.
+* ``ImportError: No module named BeautifulSoup`` - Вызвано запуском
+  кода Beautiful Soup 3 в системе, где BS3
+  не установлен. Или код писали на Beautiful Soup 4, не зная, что
+  имя пакета сменилось на ``bs4``.
 
-* ``ImportError: No module named bs4`` - Caused by running Beautiful
-  Soup 4 code on a system that doesn't have BS4 installed.
+* ``ImportError: No module named bs4`` - Вызвано запуском
+  кода Beautiful Soup 4 в системе, где BS4 не установлен.
 
 .. _parsing-xml:
 
-Parsing XML
+Разбор XML
 -----------
 
-By default, Beautiful Soup parses documents as HTML. To parse a
-document as XML, pass in "xml" as the second argument to the
-``BeautifulSoup`` constructor::
+По умолчанию Beautiful Soup разбирает документы как HTML. Чтобы разобрать
+документ в виде XML, передайте "xml" в качестве второго аргумента
+в конструктор ``BeautifulSoup``::
 
  soup = BeautifulSoup(markup, "xml")
 
-You'll need to :ref:`have lxml installed <parser-installation>`.
+Вам также нужно будет :ref:`установить lxml <parser-installation>`.
 
 Other parser problems
 ---------------------
