@@ -3,18 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to bs4RUdocs's documentation!
-=====================================
+Документация Beautiful Soup на русском языке
+============================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Оглавление:
    
    bs4ru
+   
 
 
-Indices and tables
-==================
+Индексы и таблицы
+=================
 
 * :ref:`genindex`
 * :ref:`modindex`
