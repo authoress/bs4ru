@@ -10,7 +10,7 @@ Welcome to bs4RUdocs's documentation!
    :maxdepth: 2
    :caption: Contents:
    
-   bs4_source_ru
+   bs4ru
 
 
 Indices and tables
