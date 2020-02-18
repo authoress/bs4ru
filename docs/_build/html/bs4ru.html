@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Документация Beautiful Soup &#8212; документация bs4RU 0.0.1</title>
+    <title>Документация Beautiful Soup &#8212; документация bs4RU 1.0.0</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="prev" title="Welcome to bs4RUdocs’s documentation!" href="index.html" />
+    <link rel="prev" title="Beautiful Soup на русском языке" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -2990,27 +2990,7 @@ html5lib. Читайте в разделе <a class="reference internal" href="#
 </div>
 </div>
 <div class="section" id="id68">
-<h1>Перевод этой документации<a class="headerlink" href="#id68" title="Ссылка на этот заголовок">¶</a></h1>
-<p>Перевод документации Beautiful Soup очень
-приветствуется. Перевод должен быть лицензирован по лицензии MIT,
-так же, как сам Beautiful Soup и англоязычная документация к нему.</p>
-<p>Есть два способа передать ваш перевод в основную кодовую базу
-и на веб-сайт Beautiful Soup:</p>
-<ol class="arabic simple">
-<li><p>Создайте ветку репозитория Beautiful Soup, добавьте свой
-перевод, и предложите слияние с основной веткой, так же,
-как вы предложили бы изменения исходного кода.</p></li>
-<li><p>Отправьте сообщение в дискуссионную группу Beautiful Soup со ссылкой на
-ваш перевод, или приложите ваш перевод к сообщению.</p></li>
-</ol>
-<p>Используйте существующие переводы документации на китайский или португальский в качестве образца. В
-частности, переводите исходный файл <code class="docutils literal notranslate"><span class="pre">doc/source/index.rst</span></code> вместо
-того, чтобы переводить HTML-версию документации. Это позволяет
-публиковать документацию в разных форматах, не
-только в HTML.</p>
-</div>
-<div class="section" id="id69">
-<h1>Beautiful Soup 3<a class="headerlink" href="#id69" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Beautiful Soup 3<a class="headerlink" href="#id68" title="Ссылка на этот заголовок">¶</a></h1>
 <p>Beautiful Soup 3 — предыдущая версия, и она больше
 активно не развивается. На текущий момент Beautiful Soup 3 поставляется со всеми основными
 дистрибутивами Linux:</p>
@@ -3047,8 +3027,8 @@ Soup 4 с одной простой заменой. Все, что вам нуж
 методов BS3 устарели и получили новые имена, чтобы <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">соответствовать PEP 8</a>. Некоторые
 из переименований и изменений нарушают обратную совместимость.</p>
 <p>Вот что нужно знать, чтобы перейти с BS3 на BS4:</p>
-<div class="section" id="id71">
-<h3>Вам нужен парсер<a class="headerlink" href="#id71" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id70">
+<h3>Вам нужен парсер<a class="headerlink" href="#id70" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Beautiful Soup 3 использовал модуль Python <code class="docutils literal notranslate"><span class="pre">SGMLParser</span></code>, который теперь
 устарел и был удален в Python 3.0. Beautiful Soup 4 по умолчанию использует
 <code class="docutils literal notranslate"><span class="pre">html.parser</span></code>, но вы можете подключить lxml или html5lib
@@ -3060,8 +3040,8 @@ Beautiful Soup 3. Если вы замените html.parser
 изменилось. Если такое случится, вам придется обновить код,
 чтобы разобраться с новым деревом.</p>
 </div>
-<div class="section" id="id72">
-<h3>Имена методов<a class="headerlink" href="#id72" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id71">
+<h3>Имена методов<a class="headerlink" href="#id71" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">renderContents</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">encode_contents</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">replaceWith</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">replace_with</span></code></p></li>
@@ -3105,8 +3085,8 @@ Beautiful Soup 3. Если вы замените html.parser
 <li><p><code class="docutils literal notranslate"><span class="pre">Tag.previous</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Tag.previous_element</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id73">
-<h3>Генераторы<a class="headerlink" href="#id73" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id72">
+<h3>Генераторы<a class="headerlink" href="#id72" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Я дал генераторам PEP 8-совместимые имена и преобразовал их в
 свойства:</p>
 <ul class="simple">
@@ -3136,8 +3116,8 @@ Beautiful Soup 3. Если вы замените html.parser
 объекты NavigableString, а <code class="docutils literal notranslate"><span class="pre">.stripped_strings</span></code> выдает строки Python,
 у которых удалены пробелы.</p>
 </div>
-<div class="section" id="id74">
-<h3>XML<a class="headerlink" href="#id74" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id73">
+<h3>XML<a class="headerlink" href="#id73" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Больше нет класса <code class="docutils literal notranslate"><span class="pre">BeautifulStoneSoup</span></code> для разбора XML. Чтобы
 разобрать XML, вы передаете «xml» в качестве второго аргумента
 в конструктор <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code>. По той же причине
@@ -3151,8 +3131,8 @@ Beautiful Soup считает пустым элементом любой тег 
 вы добавляете в тег дочерний элемент, тег больше не считается
 пустым элементом.</p>
 </div>
-<div class="section" id="id75">
-<h3>Мнемоники<a class="headerlink" href="#id75" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id74">
+<h3>Мнемоники<a class="headerlink" href="#id74" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Входящие мнемоники HTML или XML всегда преобразуются в
 соответствующие символы Unicode. В Beautiful Soup 3 было несколько
 перекрывающих друг друга способов взаимодействия с мнемониками. Эти способы
@@ -3167,8 +3147,8 @@ Dammit</a> все еще присутствует <code class="docutils literal 
 а не превращать Unicode в символы UTF-8, вам нужно
 использовать <a class="reference internal" href="#output-formatters"><span class="std std-ref">средства форматирования вывода</span></a>.</p>
 </div>
-<div class="section" id="id76">
-<h3>Прочее<a class="headerlink" href="#id76" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="section" id="id75">
+<h3>Прочее<a class="headerlink" href="#id75" title="Ссылка на этот заголовок">¶</a></h3>
 <p><a class="reference internal" href="#string"><span class="std std-ref">Tag.string</span></a> теперь работает рекурсивно. Если тег А
 содержит только тег B и ничего больше, тогда значение A.string будет таким же, как
 B.string. (Раньше это был None/)</p>
@@ -3190,6 +3170,34 @@ Beautiful Soup игнорировал аргументы, специфичные
 разметкой.</p>
 <p>Метод <code class="docutils literal notranslate"><span class="pre">prettify()</span></code> теперь возвращает строку Unicode, а не байтовую строку.</p>
 </div>
+</div>
+</div>
+<div class="section" id="id76">
+<h1>Перевод документации<a class="headerlink" href="#id76" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Переводы документации Beautiful Soup очень
+приветствуются. Перевод должен быть лицензирован по лицензии MIT,
+так же, как сам Beautiful Soup и англоязычная документация к нему.</p>
+<p>Есть два способа передать ваш перевод в основную кодовую базу
+и на веб-сайт Beautiful Soup:</p>
+<ol class="arabic simple">
+<li><p>Создайте ветку репозитория Beautiful Soup, добавьте свой
+перевод и предложите слияние с основной веткой — так же,
+как вы предложили бы изменения исходного кода.</p></li>
+<li><p>Отправьте <a class="reference external" href="https://groups.google.com/forum/?fromgroups#!forum/beautifulsoup">в дискуссионную группу Beautiful Soup</a>
+сообщение со ссылкой на
+ваш перевод, или приложите перевод к сообщению.</p></li>
+</ol>
+<p>Используйте существующие переводы документации на китайский или португальский в качестве образца. В
+частности, переводите исходный файл <code class="docutils literal notranslate"><span class="pre">doc/source/index.rst</span></code> вместо
+того, чтобы переводить HTML-версию документации. Это позволяет
+публиковать документацию в разных форматах, не
+только в HTML.</p>
+<div class="section" id="id78">
+<h2>Об этом переводе<a class="headerlink" href="#id78" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Перевод на русский язык: authoress</p>
+<p>Дата перевода: февраль 2020</p>
+<p>Перевод выполнен с <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">оригинала на английском языке</a>.</p>
+<p><a class="reference external" href="mailto:geekwriter&#37;&#52;&#48;yandex&#46;ru">Написать переводчику</a></p>
 </div>
 </div>
 
@@ -3300,9 +3308,12 @@ Beautiful Soup игнорировал аргументы, специфичные
 <li class="toctree-l2"><a class="reference internal" href="#id66">Повышение производительности</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#id68">Перевод этой документации</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id69">Beautiful Soup 3</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="#id68">Beautiful Soup 3</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#bs4">Перенос кода на BS4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id76">Перевод документации</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id78">Об этом переводе</a></li>
 </ul>
 </li>
 </ul>
@@ -3311,7 +3322,7 @@ Beautiful Soup игнорировал аргументы, специфичные
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="предыдущая глава">Welcome to bs4RUdocs’s documentation!</a></li>
+      <li>Previous: <a href="index.html" title="предыдущая глава">Beautiful Soup на русском языке</a></li>
   </ul></li>
 </ul>
 </div>
@@ -3338,7 +3349,7 @@ Beautiful Soup игнорировал аргументы, специфичные
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Leonard Richardson.
+      &copy;2004-2015, Leonard Richardson.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
