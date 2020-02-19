@@ -1,4 +1,4 @@
-# bs4_ru
+# bs4ru
 Russian version of the official Beautiful Soup documentation
 
 
