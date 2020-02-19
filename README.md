@@ -1,6 +1,5 @@
 # bs4ru
-Russian version of the official Beautiful Soup documentation
 
+Здесь лежат исходники русскоязычной [документации Beautiful Soup](http://bs4ru.geekwriter.ru/).
 
-
-This translation is licensed under the MIT license.
+Перевод с английского мой, распространяется на условиях [лицензии MIT](https://github.com/authoress/bs4ru/blob/master/LICENSE.txt).
