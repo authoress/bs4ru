@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'bs4RU'
+project = 'bs4ru'
 copyright = '2004-2015, Leonard Richardson'
 author = 'Leonard Richardson'
 
