@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'bs4ru'
-copyright = '2004-2015, Leonard Richardson'
+copyright = '2004-2020, Leonard Richardson'
 author = 'Leonard Richardson'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = '4.9.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -57,7 +57,17 @@ master_doc = 'index'
 #
 html_theme = 'alabaster'
 
+html_theme_options = {
+	'fixed_sidebar': False
+}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_show_sourcelink = False
+
+html_copy_source = False
+
+html_title = "geekwriter.ru"
