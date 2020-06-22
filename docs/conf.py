@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'bs4ru'
-copyright = '2004-2020, Leonard Richardson'
-author = 'Leonard Richardson'
+copyright = '2004-2020, Leonard Richardson & authoress'
+author = 'Leonard Richardson & authoress'
 
 # The full version, including alpha/beta/rc tags
 release = '4.9.1'
