@@ -58,7 +58,7 @@ master_doc = 'index'
 html_theme = 'alabaster'
 
 html_theme_options = {
-	'description': 'Документация Beautiful Soup на GeekWriter.ru',
+	'description': 'Документация Beautiful Soup на <a href="http://geekwriter.ru/">GeekWriter.ru</a>',
 	'github_user': 'authoress',
 	'github_repo': 'bs4ru'
 }
@@ -76,4 +76,4 @@ html_show_sourcelink = False
 
 html_copy_source = False
 
-html_title = "geekwriter.ru"
+html_title = "Beautiful Soup на русском языке"
