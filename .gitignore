@@ -1,3 +1,5 @@
 
-/docs/_build/
-/docs/_templates/
+/doc/_build/
+/doc/_templates/
+/doc_bs4_4.11/_build/
+/doc_bs4_4.11/_templates/
